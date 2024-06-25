@@ -1,14 +1,14 @@
 import React from "react";
 
-function TabButton(props) {
+function TabButton({ activeTab, children, ...props }) {
 
     return (
         <li>
             <button
-                className={props.activeTab ? "active" : ""}
-                onClick={props.onTabButtonClickHandler}
+                className={activeTab ? "active" : ""}
+                {...props}
             >
-                {props.children}
+                {children}
             </button>
         </li>
     );

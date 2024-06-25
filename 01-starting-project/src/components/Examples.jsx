@@ -1,6 +1,7 @@
 import React from 'react'
 import { EXAMPLES } from '../data'
 import TabButton from './TabButton'
+import Section from './Section';
 const buttonsData = ["Components", "JSX", "Props", "State"];
 function Examples() {
     const [activeTab, setActiveTab] = React.useState("Components");
@@ -9,14 +10,13 @@ function Examples() {
         setActiveTab(selectedButton);
     };
     return (
-        <section id="examples">
-            <h2>Examples</h2>
+        <Section id="examples" title="Examples">
             <menu>
                 {buttonsData.map((buttonTxt, index) => (
                     <TabButton
                         key={index}
                         activeTab={activeTab === buttonTxt}
-                        onTabButtonClickHandler={() => onTabButtonClickHandler(buttonTxt)}
+                        onClick={() => onTabButtonClickHandler(buttonTxt)}
                     >
                         {buttonTxt}
                     </TabButton>
@@ -31,9 +31,7 @@ function Examples() {
                     </code>
                 </pre>
             </div>
-
-
-        </section>
+        </Section>
     )
 }
 
