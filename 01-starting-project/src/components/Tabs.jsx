@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Tabs({ buttons, children, buttonsContainer }) {
+function Tabs({ buttons, children, buttonsContainer = "menu" }) {
     const ButtonsContainer = buttonsContainer
     return (
         <>
