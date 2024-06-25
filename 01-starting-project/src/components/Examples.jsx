@@ -12,7 +12,7 @@ function Examples() {
     };
     return (
         <Section id="examples" title="Examples">
-            <Tabs buttons={buttonsData.map((buttonTxt, index) => (
+            <Tabs buttonsContainer="menu" buttons={buttonsData.map((buttonTxt, index) => (
                 <TabButton
                     key={index}
                     activeTab={activeTab === buttonTxt}

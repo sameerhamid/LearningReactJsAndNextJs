@@ -1,12 +1,13 @@
 import React from 'react'
 
-function Tabs({ buttons, children }) {
+function Tabs({ buttons, children, buttonsContainer }) {
+    const ButtonsContainer = buttonsContainer
     return (
         <>
-            <menu>
+            <ButtonsContainer>
 
                 {buttons}
-            </menu>
+            </ButtonsContainer>
             {children}
         </>
     )
