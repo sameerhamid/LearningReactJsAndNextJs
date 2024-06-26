@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 
-function Player({ initialName, symbol, isAcitve }) {
+function Player({ initialName, symbol, isAcitve, onChangeName }) {
     const [playerName, setPlayerName] = useState(initialName);
     const [isEditing, setIsEditing] = useState(false);
 
     // changes the state on edit or save button click
     const handleEditClick = () => {
         setIsEditing((editing) => !editing);
+        if (isEditing) {
+            onChangeName(symbol, playerName)
+        }
+
     };
 
     // handles the change in input
