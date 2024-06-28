@@ -7,6 +7,7 @@ import LearnSingleAmpersand from './components/Learn&.jsx';
 import LearnAnimationStyledComponets from './components/LearnAnimationStyledComponets.jsx';
 import OverridingDotAttrs from './components/OverridingDotAttrs.jsx';
 import PrecedenceBoostAmpersand from './components/PrecedenceBoost&&.jsx';
+import RefStyledComponents from './components/RefStyledComponents.jsx';
 import TheamingStyledComponents from './components/TheamingStyledComponents.jsx';
 
 export default function App() {
@@ -30,7 +31,9 @@ export default function App() {
 
         {/* <TheamingStyledComponents /> */}
 
-        <FuctionThemesStyledComp />
+        {/* <FuctionThemesStyledComp /> */}
+
+        <RefStyledComponents />
       </main>
     </>
   );
