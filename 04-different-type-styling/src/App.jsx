@@ -1,3 +1,4 @@
+import AttachingAdditionalAttributes from './components/AttachingAdditionalAttributes.jsx';
 import AuthInputs from './components/AuthInputs.jsx';
 import Header from './components/Header.jsx';
 import LearnDoubleAmpersand from './components/Learn&&.jsx';
@@ -15,7 +16,9 @@ export default function App() {
 
         {/* <LearnDoubleAmpersand /> */}
 
-        <PrecedenceBoostAmpersand />
+        {/* <PrecedenceBoostAmpersand /> */}
+
+        <AttachingAdditionalAttributes />
       </main>
     </>
   );
