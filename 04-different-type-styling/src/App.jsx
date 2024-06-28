@@ -1,5 +1,6 @@
 import AttachingAdditionalAttributes from './components/AttachingAdditionalAttributes.jsx';
 import AuthInputs from './components/AuthInputs.jsx';
+import FuctionThemesStyledComp from './components/FuctionThemesStyledComp.jsx';
 import Header from './components/Header.jsx';
 import LearnDoubleAmpersand from './components/Learn&&.jsx';
 import LearnSingleAmpersand from './components/Learn&.jsx';
@@ -27,7 +28,9 @@ export default function App() {
 
         {/* <LearnAnimationStyledComponets /> */}
 
-        <TheamingStyledComponents />
+        {/* <TheamingStyledComponents /> */}
+
+        <FuctionThemesStyledComp />
       </main>
     </>
   );

@@ -31,7 +31,7 @@ const theme = {
 function TheamingStyledComponents() {
     return (
         <div>
-            <Button>Normal</Button>
+            <Button>NormalThemeProvider</Button>
             <ThemeProvider theme={theme}>
                 <Button>Styled with ThemeProvider</Button>
             </ThemeProvider>
