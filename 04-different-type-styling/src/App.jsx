@@ -15,7 +15,7 @@ export default function App() {
     <>
       <Header />
       <main>
-        {/* <AuthInputs /> */}
+        <AuthInputs />
 
         {/* <LearnSingleAmpersand /> */}
 
@@ -33,7 +33,7 @@ export default function App() {
 
         {/* <FuctionThemesStyledComp /> */}
 
-        <RefStyledComponents />
+        {/* <RefStyledComponents /> */}
       </main>
     </>
   );

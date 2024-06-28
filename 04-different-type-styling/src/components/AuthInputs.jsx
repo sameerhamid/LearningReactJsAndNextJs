@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { styled } from "styled-components";
-
+import StyledButton from "./Button";
 const ControlledDiv = styled.div`
   display: flex;
   flex-direction: column;
@@ -18,21 +18,7 @@ const StyledLabel = styled.label`
   color: ${({ $invalid }) => ($invalid ? "#f87171" : "#6b7280")};
 `;
 
-// & if used with space it will target its chilrens else without space it will be targe itself for psuedo selectors
-const StyledButton = styled.button`
-  padding: 1rem 2rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  border-radius: 0.25rem;
-  color: #1f2937;
-  background-color: #f0b322;
-  border-radius: 6px;
-  border: none;
 
-  &:hover {
-    background-color: #f0920e;
-  }
-`;
 
 const StyledInput = styled.input`
   width: 100%;
