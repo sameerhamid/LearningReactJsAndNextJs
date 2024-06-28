@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { styled } from "styled-components";
-import StyledButton from "./Button";
+// import StyledButton from "./Button";
+import Button from "./Button";
+import Input from "./Input";
 const ControlledDiv = styled.div`
   display: flex;
   flex-direction: column;
@@ -56,22 +58,33 @@ export default function AuthInputs() {
       {/* <div className="controls"> */}
       <ControlledDiv>
         <p>
-          <StyledLabel $invalid={emailNotValid}>Email</StyledLabel>
+          {/* <StyledLabel $invalid={emailNotValid}>Email</StyledLabel>
           <StyledInput
             type="email"
             $invalid={emailNotValid}
             onChange={(event) => handleInputChange("email", event.target.value)}
-          />
+          /> */}
+
+          <Input type="email"
+            label="EMAIL"
+            invalid={emailNotValid}
+            onChange={(event) => handleInputChange("email", event.target.value)} />
         </p>
         <p>
-          <StyledLabel $invalid={passwordNotValid}>Password</StyledLabel>
+          {/* <StyledLabel $invalid={passwordNotValid}>Password</StyledLabel>
           <StyledInput
             type="password"
             $invalid={passwordNotValid}
             onChange={(event) =>
               handleInputChange("password", event.target.value)
             }
-          />
+          /> */}
+          <Input type="password"
+            label="PASSWORD"
+            invalid={passwordNotValid}
+            onChange={(event) =>
+              handleInputChange("password", event.target.value)
+            } />
         </p>
       </ControlledDiv>
       {/* </div> */}
@@ -79,7 +92,7 @@ export default function AuthInputs() {
         <button type="button" className="text-button">
           Create a new account
         </button>
-        <StyledButton onClick={handleLogin}>Sign In</StyledButton>
+        <Button onClick={handleLogin}>Sign In</Button>
       </div>
     </div>
   );
