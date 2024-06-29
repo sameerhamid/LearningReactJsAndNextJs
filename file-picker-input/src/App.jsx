@@ -1,9 +1,10 @@
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 
 function App() {
   const inputRef = useRef()
   const handleClick = () => {
     inputRef.current.click()
+    console.log(inputRef.current.value);
   }
 
   return (
