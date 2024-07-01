@@ -12,7 +12,7 @@ function TimerChallange({ title, targetTime }) {
         setTimerStarted(true)
         timerRef.current = setTimeout(() => {
             setTimerExpired(true)
-            dialogRef.current.showModal()
+            dialogRef.current.open()
         }, targetTime * 1000)
     }
 
