@@ -1,4 +1,4 @@
-import React, { forwardRef, useImperativeHandle } from 'react'
+import React, { forwardRef, useImperativeHandle, useRef } from 'react'
 
 const ResultModal = forwardRef(function ResultModal({ result, targetTime }, ref) {
     const dialogRef = useRef()
