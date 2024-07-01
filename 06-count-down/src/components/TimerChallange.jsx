@@ -6,10 +6,9 @@ function TimerChallange({ title, targetTime }) {
     const dialogRef = useRef()
 
     const [timeRemaining, setTimeRemaining] = useState(targetTime)
-    console.log(timeRemaining);
+
     const timerAcitve = timeRemaining > 0 && timeRemaining < targetTime * 1000
 
-    console.log(timerAcitve);
 
     if (timeRemaining <= 0) {
 
