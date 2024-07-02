@@ -2,14 +2,19 @@ import React, { useRef } from "react";
 import Input from "./Input";
 
 function NewProject({ onAddProject }) {
-    const titleRef = useRef(null);
-    const descriptionRef = useRef(null);
-    const dueDateRef = useRef(null);
+    const titleRef = useRef('');
+    const descriptionRef = useRef('');
+    const dueDateRef = useRef('');
 
     const handleSave = () => {
         const enteredTitle = titleRef.current.value;
-        const enteredDescription = titleRef.current.value;
-        const enteredDueDate = titleRef.current.value;
+        const enteredDescription = descriptionRef.current.value;
+        const enteredDueDate = dueDateRef.current.value;
+
+        if (enteredTitle === '' || enteredDescription === '' || enteredDueDate === ''
+        ) {
+            return
+        }
 
         // validation...
         onAddProject({
@@ -17,6 +22,10 @@ function NewProject({ onAddProject }) {
             description: enteredDescription,
             dueDate: enteredDueDate,
         });
+
+        titleRef.current.value = '';
+        descriptionRef.current.value = '';
+        dueDateRef.current.value = '';
     };
     return (
         <div className="w-[35rem] mt-60">
@@ -38,13 +47,13 @@ function NewProject({ onAddProject }) {
 
             <div>
                 {/* first input */}
-                <Input label="Title" type="text" ref={titleRef} />
+                <Input ref={titleRef} label="Title" type="text" />
                 {/* second input */}
 
-                <Input label="Description" isTextArea ref={descriptionRef} />
+                <Input ref={descriptionRef} label="Description" isTextArea />
                 {/* third input */}
 
-                <Input label="Due Date" type="date" ref={dueDateRef} />
+                <Input ref={dueDateRef} label="Due Date" type="date" />
             </div>
         </div>
     );
