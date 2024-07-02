@@ -64,15 +64,17 @@ function App() {
       return {
         ...prevState,
         selectedProjectId: undefined,
-        projects: prevState.projects.filter(project => project.id != id)
+        projects: prevState.projects.filter((project) => project.id != id),
       };
     });
-  }
+  };
   const selectedProject = projectState.projects.find(
     (project) => project.id === projectState.selectedProjectId
   );
 
-  let content = <SelectedProject project={selectedProject} onDelete={handleDeletProject} />;
+  let content = (
+    <SelectedProject project={selectedProject} onDelete={handleDeletProject} />
+  );
   if (projectState.selectedProjectId === null) {
     content = (
       <NewProject
