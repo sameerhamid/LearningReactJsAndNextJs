@@ -1,6 +1,6 @@
-import React from "react";
+import React, { forwardRef } from "react";
 
-function Input({ isTextArea, label, ...props }) {
+const Input = forwardRef(function Input({ isTextArea, label, ...props }, ref) {
     const inputTClasses = `w-full p-1 
     border-b-2 rounded-sm
     border-stone-300
@@ -15,12 +15,12 @@ function Input({ isTextArea, label, ...props }) {
                 {label}
             </label>
             {isTextArea ? (
-                <textarea id={label} {...props} className={inputTClasses} />
+                <textarea id={label} {...props} className={inputTClasses} ref={ref} />
             ) : (
-                <input id={label} {...props} className={inputTClasses} />
+                <input id={label} {...props} className={inputTClasses} ref={ref} />
             )}
         </p>
     );
-}
+})
 
 export default Input;
