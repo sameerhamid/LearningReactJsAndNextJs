@@ -15,14 +15,13 @@ function App() {
   });
 
   const handleSelectProject = (id) => {
-
     setProjectState((prevState) => {
       return {
         ...prevState,
         selectedProjectId: id,
       };
     });
-  }
+  };
 
   // passed to newProject component for cancle button click
 
@@ -60,19 +59,25 @@ function App() {
     });
   };
 
+  const handleDeletProject = (id) => {
+    setProjectState((prevState) => {
+      return {
+        ...prevState,
+        selectedProjectId: undefined,
+        projects: prevState.projects.filter(project => project.id != id)
+      };
+    });
+  }
+  const selectedProject = projectState.projects.find(
+    (project) => project.id === projectState.selectedProjectId
+  );
 
-
-  const selectedProject = projectState.projects.find(project => project.id === projectState.selectedProjectId)
-
-
-
-  let content = <SelectedProject project={selectedProject} />
+  let content = <SelectedProject project={selectedProject} onDelete={handleDeletProject} />;
   if (projectState.selectedProjectId === null) {
     content = (
       <NewProject
         onAddProject={handleAddProject}
         onCancel={handleCancleAddProject}
-
       />
     );
   } else if (projectState.selectedProjectId === undefined) {
