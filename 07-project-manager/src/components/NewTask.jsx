@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function NewTask({ onAddTask, onDeleteTask }) {
+function NewTask({ onAddTask }) {
     const [enteredTask, setEnteredTask] = useState("");
 
     const handleChange = (e) => {
