@@ -7,11 +7,19 @@ import DeleteConfirmation from "./components/DeleteConfirmation.jsx";
 import logoImg from "./assets/logo.png";
 import { sortPlacesByDistance } from "./loc.js";
 
+
+const storedPlaceIds =
+  JSON.parse(localStorage.getItem("selectedPlaces")) || [];
+
+const storedPlaces = storedPlaceIds.map((id) =>
+  AVAILABLE_PLACES.find((place) => place.id === id)
+);
+
 function App() {
   const modal = useRef();
   const selectedPlace = useRef();
   const [availablePlace, setAvailablePlaces] = useState([]);
-  const [pickedPlaces, setPickedPlaces] = useState([]);
+  const [pickedPlaces, setPickedPlaces] = useState(storedPlaces);
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
@@ -22,21 +30,27 @@ function App() {
       );
       setAvailablePlaces(sortedPlaces);
     });
-  }, [])
+  }, []);
 
-  useEffect(() => {
-    const storedPlaceIds = JSON.parse(localStorage.getItem('selectedPlaces')) || []
-    if (storedPlaceIds.length > 0) {
-      let storedPlaces = []
-      for (let place of storedPlaceIds) {
-        storedPlaces.push(AVAILABLE_PLACES.find(p => p.id === place))
-      }
+  // here this useEffect usage is redundent becoz the code insede exicutes imediatatly line by line
+  // useEffect(() => {
+  //   const storedPlaceIds =
+  //     JSON.parse(localStorage.getItem("selectedPlaces")) || [];
+  //   if (storedPlaceIds.length > 0) {
+  //     // let storedPlaces = [];
+  //     // for (let place of storedPlaceIds) {
+  //     //   storedPlaces.push(AVAILABLE_PLACES.find((p) => p.id === place));
+  //     // }
+  //     // setPickedPlaces(storedPlaces);
 
-      console.log(storedPlaces);
-      setPickedPlaces(storedPlaces)
-    }
+  //     // anothe method
 
-  }, [])
+  //     const storedPlaces = storedPlaceIds.map((id) =>
+  //       AVAILABLE_PLACES.find((place) => place.id === id)
+  //     );
+  //     setPickedPlaces(storedPlaces);
+  //   }
+  // }, []);
 
   function handleStartRemovePlace(id) {
     modal.current.open();
@@ -56,15 +70,27 @@ function App() {
       return [place, ...prevPickedPlaces];
     });
 
-    const storedIds = JSON.parse(localStorage.getItem('selectedPlaces')) || []
+    const storedIds = JSON.parse(localStorage.getItem("selectedPlaces")) || [];
     if (storedIds.indexOf(id) === -1) {
-      localStorage.setItem('selectedPlaces', JSON.stringify([id, ...storedIds]))
+      localStorage.setItem(
+        "selectedPlaces",
+        JSON.stringify([id, ...storedIds])
+      );
     }
   }
 
   function handleRemovePlace() {
     setPickedPlaces((prevPickedPlaces) =>
       prevPickedPlaces.filter((place) => place.id !== selectedPlace.current)
+    );
+
+    const storedPlaceIds =
+      JSON.parse(localStorage.getItem("selectedPlaces")) || [];
+    localStorage.setItem(
+      "selectedPlaces",
+      JSON.stringify(
+        storedPlaceIds.filter((id) => id !== selectedPlace.current)
+      )
     );
     modal.current.close();
   }
