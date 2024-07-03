@@ -75,8 +75,6 @@ function App() {
   return (
     <CartContext.Provider value={contextVal}>
       <Header
-        cart={shoppingCart}
-
       />
       <Shop  >
         {DUMMY_PRODUCTS.map((product) => (
