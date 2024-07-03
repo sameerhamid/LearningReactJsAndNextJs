@@ -24,6 +24,20 @@ function App() {
     });
   }, [])
 
+  useEffect(() => {
+    const storedPlaceIds = JSON.parse(localStorage.getItem('selectedPlaces')) || []
+    if (storedPlaceIds.length > 0) {
+      let storedPlaces = []
+      for (let place of storedPlaceIds) {
+        storedPlaces.push(AVAILABLE_PLACES.find(p => p.id === place))
+      }
+
+      console.log(storedPlaces);
+      setPickedPlaces(storedPlaces)
+    }
+
+  }, [])
+
   function handleStartRemovePlace(id) {
     modal.current.open();
     selectedPlace.current = id;
