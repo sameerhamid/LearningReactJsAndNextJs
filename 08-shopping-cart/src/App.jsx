@@ -67,16 +67,21 @@ function App() {
     });
   }
 
+  const contextVal = {
+    items: shoppingCart.items,
+    addItemToCart: handleAddItemToCart,
+    updateCartItemQuantity: handleUpdateCartItemQuantity,
+  }
   return (
-    <CartContext.Provider value={shoppingCart}>
+    <CartContext.Provider value={contextVal}>
       <Header
         cart={shoppingCart}
-        onUpdateCartItemQuantity={handleUpdateCartItemQuantity}
+
       />
       <Shop  >
         {DUMMY_PRODUCTS.map((product) => (
           <li key={product.id}>
-            <Product {...product} onAddToCart={handleAddItemToCart} />
+            <Product {...product} />
           </li>
         ))}
       </Shop>
