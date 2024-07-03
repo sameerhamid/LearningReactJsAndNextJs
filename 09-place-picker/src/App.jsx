@@ -7,7 +7,11 @@ import DeleteConfirmation from "./components/DeleteConfirmation.jsx";
 import logoImg from "./assets/logo.png";
 import { sortPlacesByDistance } from "./loc.js";
 
-
+/**
+ * it is outside the componet becoz it need to exicute only once
+ * not on the any app state update
+ * if this code will be in app component this will exicute when ever any state in app updates
+ *  */
 const storedPlaceIds =
   JSON.parse(localStorage.getItem("selectedPlaces")) || [];
 
