@@ -6,10 +6,10 @@ function QuestionTimer({ timeout, onTimeout }) {
     useEffect(() => {
         console.log("SETTING TIMEOUT");
         const timer = setTimeout(onTimeout, timeout)
-        // return () => {
-        //     console.log("Clearing timeout");
-        //     clearTimeout(timer)
-        // }
+        return () => {
+            console.log("Clearing timeout");
+            clearTimeout(timer)
+        }
     }, [timeout, onTimeout])
 
     useEffect(() => {
@@ -18,10 +18,10 @@ function QuestionTimer({ timeout, onTimeout }) {
             setRemainingTime(prevTime => prevTime - 100)
         }, 100)
 
-        // return () => {
-        //     console.log("Clearing interval");
-        //     clearInterval(interval)
-        // }
+        return () => {
+            console.log("Clearing interval");
+            clearInterval(interval)
+        }
     }, [])
 
     return (

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useCallback } from 'react'
 import QUESTIONS from '../questions'
 import quizCompleteImg from '../assets/quiz-complete.png'
 import QuestionTimer from './QuestionTimer'
@@ -34,7 +34,11 @@ function Quiz() {
     return (
         <div id='quiz'>
             <div id='question'>
-                <QuestionTimer timeout={10000} onTimeout={handleSkipAnswer} />
+                <QuestionTimer
+                    timeout={10000}
+                    onTimeout={handleSkipAnswer}
+                    key={activeQuestionIndex} // when the key changes the component will be recreated
+                />
 
                 <h2>{QUESTIONS[activeQuestionIndex].text}</h2>
                 <ul id="answers">
