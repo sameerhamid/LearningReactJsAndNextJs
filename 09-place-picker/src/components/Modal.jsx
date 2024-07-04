@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 
-function Modal({ open, children }) {
+function Modal({ open, children, onClose }) {
   const dialogRef = useRef()
 
   // it will give error Cannot read properties of undefined (reading 'close') because the ref has not set yet to dialog so we use useEffect
@@ -20,7 +20,7 @@ function Modal({ open, children }) {
   }, [open])
 
   return createPortal(
-    <dialog className="modal" ref={dialogRef}>
+    <dialog className="modal" ref={dialogRef} onClose={onClose}>
       {children}
     </dialog>,
     document.getElementById('modal')
