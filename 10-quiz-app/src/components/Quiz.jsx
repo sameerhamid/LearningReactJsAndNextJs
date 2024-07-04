@@ -1,56 +1,52 @@
-import React, { useState, useCallback } from 'react'
-import QUESTIONS from '../questions'
-import quizCompleteImg from '../assets/quiz-complete.png'
-import QuestionTimer from './QuestionTimer'
+import React, { useState, useCallback, useRef } from "react";
+import QUESTIONS from "../questions";
+import quizCompleteImg from "../assets/quiz-complete.png";
+import QuestionTimer from "./QuestionTimer";
+import Answers from "./Answers";
+import Question from "./Question";
 function Quiz() {
-    const [userAnswers, setUserAnswers] = useState([])
-    const activeQuestionIndex = userAnswers.length
+    const [userAnswers, setUserAnswers] = useState([]);
 
-    const quizIsComplete = activeQuestionIndex === QUESTIONS.length
+    const activeQuestionIndex =
+        userAnswers.length
 
-    const handleSelectAnswer = useCallback((selectedAnswer) => {
-        setUserAnswers(prevAnsers => {
-            return [...prevAnsers, selectedAnswer]
-        })
-    }, [])
+    const quizIsComplete = activeQuestionIndex === QUESTIONS.length;
 
-    const handleSkipAnswer = useCallback(
-        () => {
-            handleSelectAnswer(null)
+    const handleSelectAnswer = useCallback(
+        (selectedAnswer) => {
+
+            setUserAnswers((prevAnsers) => {
+                return [...prevAnsers, selectedAnswer];
+            });
+
         },
-        [handleSelectAnswer]
-    )
+        []
+    );
+
+    const handleSkipAnswer = useCallback(() => {
+        handleSelectAnswer(null);
+    }, [handleSelectAnswer]);
 
     if (quizIsComplete) {
         return (
-            <div id='summary'>
+            <div id="summary">
                 <img src={quizCompleteImg} alt="Quiz complete image" />
                 <h2>Quiz Completed!</h2>
             </div>
-        )
+        );
     }
-    const shuffledAnswers = [...QUESTIONS[activeQuestionIndex].answers]
-    shuffledAnswers.sort(() => Math.random() - 0.5)
-    return (
-        <div id='quiz'>
-            <div id='question'>
-                <QuestionTimer
-                    timeout={10000}
-                    onTimeout={handleSkipAnswer}
-                    key={activeQuestionIndex} // when the key changes the component will be recreated
-                />
 
-                <h2>{QUESTIONS[activeQuestionIndex].text}</h2>
-                <ul id="answers">
-                    {shuffledAnswers.map(answer => {
-                        return <li key={answer} className='answer'>
-                            <button onClick={() => handleSelectAnswer(answer)}>{answer}</button>
-                        </li>
-                    })}
-                </ul>
-            </div>
+    return (
+        <div id="quiz">
+            <Question
+                // when the key changes the component will be recreated
+                key={activeQuestionIndex}
+                onSelectAnswer={handleSelectAnswer}
+                handleSkipAnswer={handleSkipAnswer}
+                questionIndex={activeQuestionIndex}
+            />
         </div>
-    )
+    );
 }
 
-export default Quiz
+export default Quiz;
