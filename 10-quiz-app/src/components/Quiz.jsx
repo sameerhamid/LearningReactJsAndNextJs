@@ -4,6 +4,7 @@ import quizCompleteImg from "../assets/quiz-complete.png";
 import QuestionTimer from "./QuestionTimer";
 import Answers from "./Answers";
 import Question from "./Question";
+import Summary from "./Summary";
 function Quiz() {
     const [userAnswers, setUserAnswers] = useState([]);
 
@@ -29,10 +30,7 @@ function Quiz() {
 
     if (quizIsComplete) {
         return (
-            <div id="summary">
-                <img src={quizCompleteImg} alt="Quiz complete image" />
-                <h2>Quiz Completed!</h2>
-            </div>
+            <Summary userAnswers={userAnswers} />
         );
     }
 
