@@ -18,11 +18,18 @@ class UserFinder extends Component {
   constructor() {
     super();
     this.state = {
-      filteredUsers: DUMMY_USERS,
+      filteredUsers: [],
       searchTerm: "",
     };
   }
 
+  // use when fetching users from api
+  componentDidMount() {
+    // Send your http request
+    setTimeout(() => {
+      this.setState({ filteredUsers: DUMMY_USERS });
+    }, 1000);
+  }
   componentDidUpdate(prevProp, prevState) {
     if (prevState.searchTerm !== this.state.searchTerm) {
       this.setState({
