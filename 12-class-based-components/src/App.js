@@ -1,5 +1,6 @@
 import { Component } from "react";
 import Users from "./components/Users";
+import UserFinder from "./components/UserFinder";
 
 // function App() {
 //   return (
@@ -13,7 +14,8 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Users />
+        {/* <Users /> */}
+        <UserFinder />
       </div>
     );
   }
