@@ -26,6 +26,7 @@ function useFetch(fetchFn, initilaValue) {
     isFetching,
     error,
     fetchedData,
+    setFetchedData,
   };
 }
 
