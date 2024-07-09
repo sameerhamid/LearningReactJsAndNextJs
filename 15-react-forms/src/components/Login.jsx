@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
+import { InputNames } from './inputNames';
 
 export default function Login() {
   // const [enteredEmail, setEnteredEmail] = useState('')
   // const [enteredPassword, setEnteredPassword] = useState('')
 
   const [enteredValues, setEnteredValues] = useState({
-    email: '',
-    password: '',
+    [InputNames.EMAIL]: '',
+    [InputNames.PASSWORD]: '',
   })
   const handleSubmit = (event) => {
     event.preventDefault()
@@ -36,7 +37,7 @@ export default function Login() {
           <label htmlFor="email">Email</label>
           <input id="email" type="email" name="email"
             value={enteredValues.email}
-            onChange={(event) => handleChange('email', event)}
+            onChange={(event) => handleChange(InputNames.EMAIL, event)}
           />
         </div>
 
@@ -44,7 +45,7 @@ export default function Login() {
           <label htmlFor="password">Password</label>
           <input id="password" type="password" name="password"
             value={enteredValues.password}
-            onChange={(event) => handleChange('password', event)}
+            onChange={(event) => handleChange(InputNames.PASSWORD, event)}
           />
         </div>
       </div>
