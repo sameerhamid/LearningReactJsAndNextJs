@@ -13,6 +13,12 @@ export default function Login() {
         event.preventDefault()
         console.log("input values:>>>", enteredValues);
 
+        // reset the input values on submit
+
+        setEnteredValues({
+            [InputNames.EMAIL]: '',
+            [InputNames.PASSWORD]: '',
+        })
     }
 
     // const handleEmailChange = (event) => {
