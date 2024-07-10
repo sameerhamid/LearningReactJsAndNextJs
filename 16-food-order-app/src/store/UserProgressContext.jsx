@@ -1,7 +1,7 @@
-import { createContext } from "react";
+import { createContext, useState } from "react";
 
 const UserProgressContext = createContext({
-    porgress: 'cart' || 'checkout', // 'cart' , 'checkout'
+    progress: 'cart' || 'checkout', // 'cart' , 'checkout'
     showCart: () => { },
     hideCart: () => { },
     showCheckout: () => { },
@@ -26,7 +26,7 @@ export const UserProgressContextProvider = ({ children }) => {
         setUserProgress('')
     }
     const contextVal = {
-        porgress: userProgress,
+        progress: userProgress,
         showCart,
         hideCart,
         showCheckout,

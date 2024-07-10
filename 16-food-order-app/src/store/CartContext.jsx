@@ -13,7 +13,6 @@ const ACTION_TYPES = {
 
 const cartReducer = (state, action) => {
     if (action.type === ACTION_TYPES.ADD_ITEM) {
-
         const existingCartItemIndex = state.items.findIndex(item => item.id === action.item.id)
         console.log("existingCartItemIndex>>>", existingCartItemIndex);
         const updatedItems = [...state.items]
@@ -26,6 +25,7 @@ const cartReducer = (state, action) => {
             }
             updatedItems[existingCartItemIndex] = updatedItem
         } else {
+            console.log('else ');
             state.items.push({ ...action.item, quantity: 1 })
         }
 
