@@ -9,8 +9,13 @@ export default function LoginUsingState() {
         [InputNames.EMAIL]: '',
         [InputNames.PASSWORD]: '',
     })
+    const [didEdit, setDidEdit] = useState({
+        [InputNames.EMAIL]: false,
+        [InputNames.PASSWORD]: false,
+    })
 
-    const emailIsValid = enteredValues[InputNames.EMAIL] !== '' && !enteredValues[InputNames.EMAIL].includes('@')
+    const emailIsValid = didEdit[InputNames.EMAIL] && !enteredValues[InputNames.EMAIL].includes('@')
+
 
     const handleSubmit = (event) => {
         event.preventDefault()
@@ -21,6 +26,15 @@ export default function LoginUsingState() {
         setEnteredValues({
             [InputNames.EMAIL]: '',
             [InputNames.PASSWORD]: '',
+        })
+    }
+
+    const handleInputBlur = (identifier) => {
+        setDidEdit(prevState => {
+            return {
+                ...prevState,
+                [identifier]: true
+            }
         })
     }
 
@@ -35,6 +49,13 @@ export default function LoginUsingState() {
         setEnteredValues(prevValues => {
             return { ...prevValues, [identifier]: event.target.value }
         })
+
+        setDidEdit(prevState => {
+            return {
+                ...prevState,
+                [identifier]: false
+            }
+        })
     }
 
     return (
@@ -47,6 +68,8 @@ export default function LoginUsingState() {
                     <input id="email" type="email" name="email"
                         value={enteredValues[InputNames.EMAIL]}
                         onChange={(event) => handleChange(InputNames.EMAIL, event)}
+                        //  onBlur is called when a user leaves an input field:
+                        onBlur={() => handleInputBlur(InputNames.EMAIL)}
                     />
                     <div className="control-error">
                         {emailIsValid && <p>Please enter a valid email address.</p>}
