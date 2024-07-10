@@ -15,8 +15,10 @@ const cartReducer = (state, action) => {
     if (action.type === ACTION_TYPES.ADD_ITEM) {
 
         const existingCartItemIndex = state.items.findIndex(item => item.id === action.item.id)
+        console.log("existingCartItemIndex>>>", existingCartItemIndex);
         const updatedItems = [...state.items]
         if (existingCartItemIndex > -1) {
+            console.log("inside if");
             const existingItem = state.items[existingCartItemIndex]
             const updatedItem = {
                 ...existingItem,
@@ -61,6 +63,7 @@ export const CartContextProvider = ({ children }) => {
         addItem,
         removeItem
     }
+
     return <CartContext.Provider value={cartConstextVal}>
         {children}
     </CartContext.Provider>
