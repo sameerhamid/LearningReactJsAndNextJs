@@ -1,5 +1,6 @@
 import React from 'react'
 import { currencyFormatter } from '../utils/formatting'
+import Button from './UI/Button'
 
 function MealItem({ meal, onAddCartClick }) {
     return (
@@ -12,7 +13,7 @@ function MealItem({ meal, onAddCartClick }) {
                     <p className='meal-item-description'>{meal.description}</p>
 
                     <p className='meal-item-actions'>
-                        <button onClick={() => onAddCartClick(meal.id)}>Add to Cart</button>
+                        <Button onClick={() => onAddCartClick(meal.id)}>Add to Cart</Button>
                     </p>
                 </div>
             </article>

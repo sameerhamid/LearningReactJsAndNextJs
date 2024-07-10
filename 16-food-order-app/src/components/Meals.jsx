@@ -23,7 +23,7 @@ function Meals() {
         <ul id='meals'>
             {loadedMeals.map(meal => {
                 return (
-                    <MealItem meal={meal} id={meal} />
+                    <MealItem meal={meal} key={meal.id} />
                 )
             })}
         </ul>
