@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { InputNames } from './inputNames';
+import CustomInput from './CustomInput';
 
 export default function LoginUsingState() {
     // const [enteredEmail, setEnteredEmail] = useState('')
@@ -14,8 +15,8 @@ export default function LoginUsingState() {
         [InputNames.PASSWORD]: false,
     })
 
-    const emailIsValid = didEdit[InputNames.EMAIL] && !enteredValues[InputNames.EMAIL].includes('@')
-
+    const emailIsInvalid = didEdit[InputNames.EMAIL] && !enteredValues[InputNames.EMAIL].includes('@')
+    const passwordIsInvalid = didEdit[InputNames.PASSWORD] && enteredValues[InputNames.PASSWORD].length < 6
 
     const handleSubmit = (event) => {
         event.preventDefault()
@@ -63,7 +64,20 @@ export default function LoginUsingState() {
             <h2>Login</h2>
 
             <div className="control-row">
-                <div className="control no-margin">
+
+                <CustomInput
+                    label="Email"
+                    id={InputNames.EMAIL}
+                    type="email"
+                    name={InputNames.EMAIL}
+                    value={enteredValues[InputNames.EMAIL]}
+                    onChange={(event) => handleChange(InputNames.EMAIL, event)}
+                    //  onBlur is called when a user leaves an input field:
+                    onBlur={() => handleInputBlur(InputNames.EMAIL)}
+                    error={emailIsInvalid && "Please enter a valid email!"}
+                />
+
+                {/* <div className="control no-margin">
                     <label htmlFor="email">Email</label>
                     <input id="email" type="email" name="email"
                         value={enteredValues[InputNames.EMAIL]}
@@ -74,15 +88,27 @@ export default function LoginUsingState() {
                     <div className="control-error">
                         {emailIsValid && <p>Please enter a valid email address.</p>}
                     </div>
-                </div>
+                </div> */}
 
-                <div className="control no-margin">
+                <CustomInput
+                    label="Password"
+                    id={InputNames.PASSWORD}
+                    type="password"
+                    name={InputNames.PASSWORD}
+                    value={enteredValues[InputNames.PASSWORD]}
+                    onChange={(event) => handleChange(InputNames.PASSWORD, event)}
+                    //  onBlur is called when a user leaves an input field:
+                    onBlur={() => handleInputBlur(InputNames.PASSWORD)}
+                    error={passwordIsInvalid && "Please enter a valid password!"}
+                />
+
+                {/* <div className="control no-margin">
                     <label htmlFor="password">Password</label>
                     <input id="password" type="password" name="password"
                         value={enteredValues[InputNames.PASSWORD]}
                         onChange={(event) => handleChange(InputNames.PASSWORD, event)}
                     />
-                </div>
+                </div> */}
             </div>
 
             <p className="form-actions">
