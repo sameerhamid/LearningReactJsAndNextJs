@@ -1,43 +1,51 @@
-import React, { useState } from 'react'
-import { InputNames } from './inputNames';
-import CustomInput from './CustomInput';
+import React, { useState } from "react";
+import { InputNames } from "./inputNames";
+import CustomInput from "./CustomInput";
+import { hasMinLength, isEmail, isNotEmpty } from "../util/validation";
 
 export default function LoginUsingState() {
     // const [enteredEmail, setEnteredEmail] = useState('')
     // const [enteredPassword, setEnteredPassword] = useState('')
 
     const [enteredValues, setEnteredValues] = useState({
-        [InputNames.EMAIL]: '',
-        [InputNames.PASSWORD]: '',
-    })
+        [InputNames.EMAIL]: "",
+        [InputNames.PASSWORD]: "",
+    });
     const [didEdit, setDidEdit] = useState({
         [InputNames.EMAIL]: false,
         [InputNames.PASSWORD]: false,
-    })
+    });
 
-    const emailIsInvalid = didEdit[InputNames.EMAIL] && !enteredValues[InputNames.EMAIL].includes('@')
-    const passwordIsInvalid = didEdit[InputNames.PASSWORD] && enteredValues[InputNames.PASSWORD].length < 6
+    const emailIsInvalid =
+        didEdit[InputNames.EMAIL] &&
+        !isEmail(enteredValues[InputNames.EMAIL]) ||
+        !isNotEmpty(enteredValues[InputNames.EMAIL]);
+
+    const passwordIsInvalid =
+        didEdit[InputNames.PASSWORD] &&
+        !hasMinLength(enteredValues[InputNames.PASSWORD], 6) ||
+        !isNotEmpty(enteredValues[InputNames.PASSWORD]);
 
     const handleSubmit = (event) => {
-        event.preventDefault()
+        event.preventDefault();
         console.log("input values:>>>", enteredValues);
 
         // reset the input values on submit
 
         setEnteredValues({
-            [InputNames.EMAIL]: '',
-            [InputNames.PASSWORD]: '',
-        })
-    }
+            [InputNames.EMAIL]: "",
+            [InputNames.PASSWORD]: "",
+        });
+    };
 
     const handleInputBlur = (identifier) => {
-        setDidEdit(prevState => {
+        setDidEdit((prevState) => {
             return {
                 ...prevState,
-                [identifier]: true
-            }
-        })
-    }
+                [identifier]: true,
+            };
+        });
+    };
 
     // const handleEmailChange = (event) => {
     //   setEnteredEmail(event.target.value)
@@ -47,24 +55,23 @@ export default function LoginUsingState() {
     // }
 
     const handleChange = (identifier, event) => {
-        setEnteredValues(prevValues => {
-            return { ...prevValues, [identifier]: event.target.value }
-        })
+        setEnteredValues((prevValues) => {
+            return { ...prevValues, [identifier]: event.target.value };
+        });
 
-        setDidEdit(prevState => {
+        setDidEdit((prevState) => {
             return {
                 ...prevState,
-                [identifier]: false
-            }
-        })
-    }
+                [identifier]: false,
+            };
+        });
+    };
 
     return (
         <form onSubmit={handleSubmit}>
             <h2>Login</h2>
 
             <div className="control-row">
-
                 <CustomInput
                     label="Email"
                     id={InputNames.EMAIL}
