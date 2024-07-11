@@ -18,11 +18,14 @@ function useHttp(url, config, initialData) {
   const [isLoading, setIsLoading] = useState(false);
 
   const sendRequest = useCallback(
-    async function () {
+    async function (data) {
       console.log("calling send request");
       setIsLoading(true);
       try {
-        const resData = await sendHttpRequest(`${baseUrl}/${url}`, config);
+        const resData = await sendHttpRequest(`${baseUrl}/${url}`, {
+          ...config,
+          body: data,
+        });
         setData(resData);
       } catch (error) {
         setError(error.message || "Something went wrong");

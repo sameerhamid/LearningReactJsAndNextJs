@@ -6,13 +6,21 @@ import Input from "./UI/Input";
 
 import UserProgressContext from "../store/UserProgressContext";
 import Button from "./UI/Button";
-
+import useHttp from "../hooks/useHttp";
+import Error from "./UI/Error";
+const requestConfig = {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    }
+}
 function Checkout() {
     const { items } = useContext(CartContext);
     const { progress, hideCheckout } = useContext(UserProgressContext)
     const cartTotal = items.reduce((totalPrice, item) => {
         return totalPrice + item.price * item.quantity;
     }, 0);
+    const { data, error, isLoading, sendRequest } = useHttp('orders', requestConfig)
 
     const handleClose = () => {
         hideCheckout()
@@ -23,20 +31,21 @@ function Checkout() {
         const fd = new FormData(event.target)
         const customerData = Object.fromEntries(fd.entries())
 
-        fetch('http://localhost:3000/orders', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                order: {
-                    items: items,
-                    customer: customerData
-                }
-            })
-        })
+        sendRequest(JSON.stringify({
+            order: {
+                items: items,
+                customer: customerData
+            }
+        }))
 
+    }
 
+    let actions = <>
+        <Button textOnly type="button" onClick={handleClose}>Close</Button>
+        <Button >Place Order</Button>
+    </>
+    if (isLoading) {
+        actions = <span>Sending order data...</span>
     }
     return (
         <Modal open={progress === 'checkout'} onClose={handleClose}>
@@ -52,9 +61,11 @@ function Checkout() {
                     <Input label='City' type='text' id='city' />
                 </div>
 
+                {
+                    error && <Error title="Failed to submit order" message={error} />
+                }
                 <p className="modal-actions">
-                    <Button textOnly type="button" onClick={handleClose}>Close</Button>
-                    <Button >Place Order</Button>
+                    {actions}
                 </p>
             </form>
         </Modal>
