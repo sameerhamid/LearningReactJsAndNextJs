@@ -251,7 +251,7 @@ h1 {
 
 .error {
   background-color: rgb(253, 183, 183);
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   padding: 0.2rem 1rem;
   color: #381616;
   line-height: 0.4;

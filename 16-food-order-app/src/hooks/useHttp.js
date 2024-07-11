@@ -12,11 +12,15 @@ async function sendHttpRequest(url, config) {
 }
 
 const baseUrl = "http://localhost:3000";
+
 function useHttp(url, config, initialData) {
   const [data, setData] = useState(initialData);
   const [error, setError] = useState();
   const [isLoading, setIsLoading] = useState(false);
 
+  const clearData = () => {
+    setData(initialData);
+  };
   const sendRequest = useCallback(
     async function (data) {
       console.log("calling send request");
@@ -48,6 +52,7 @@ function useHttp(url, config, initialData) {
     isLoading,
     error,
     sendRequest,
+    clearData,
   };
 }
 

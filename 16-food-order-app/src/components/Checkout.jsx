@@ -15,17 +15,23 @@ const requestConfig = {
     }
 }
 function Checkout() {
-    const { items } = useContext(CartContext);
+    const { items, clearCart } = useContext(CartContext);
     const { progress, hideCheckout } = useContext(UserProgressContext)
     const cartTotal = items.reduce((totalPrice, item) => {
         return totalPrice + item.price * item.quantity;
     }, 0);
-    const { data, error, isLoading, sendRequest } = useHttp('orders', requestConfig)
+    const { data, error, isLoading, sendRequest, clearData } = useHttp('orders', requestConfig)
 
     const handleClose = () => {
         hideCheckout()
     }
 
+    const handleFinish = () => {
+        hideCheckout()
+        clearCart()
+        clearData()
+
+    }
     const handleSubmit = (event) => {
         event.preventDefault()
         const fd = new FormData(event.target)
@@ -40,12 +46,23 @@ function Checkout() {
 
     }
 
+
     let actions = <>
         <Button textOnly type="button" onClick={handleClose}>Close</Button>
         <Button >Place Order</Button>
     </>
     if (isLoading) {
         actions = <span>Sending order data...</span>
+    }
+
+    if (data && !error) {
+        return <Modal open={progress === 'checkout'} onClose={handleFinish}>
+            <h2>Order Placed Successfully!</h2>
+            <p>We will get back to you with more details via email within the next few minutes</p>
+            <p className="modal-actions">
+                <Button textOnly type="button" onClick={handleFinish}>Okay</Button>
+            </p>
+        </Modal>
     }
     return (
         <Modal open={progress === 'checkout'} onClose={handleClose}>
