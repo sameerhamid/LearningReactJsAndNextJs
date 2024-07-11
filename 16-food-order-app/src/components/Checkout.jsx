@@ -17,9 +17,16 @@ function Checkout() {
     const handleClose = () => {
         hideCheckout()
     }
+
+    const handleSubmit = (event) => {
+        event.preventDefault()
+        const fd = new FormData(event.target)
+        const data = Object.fromEntries(fd.entries())
+        console.log(data);
+    }
     return (
         <Modal open={progress === 'checkout'} onClose={handleClose}>
-            <form action="">
+            <form onSubmit={handleSubmit}>
                 <h2>Chekcout</h2>
                 <p>Total Amount: {currencyFormatter.format(cartTotal)} </p>
                 <Input label="Full Name" type="text" id="full-name" />
