@@ -4,8 +4,12 @@ import { Component } from "react";
 
 const Counter = () => {
   const count = useSelector((state) => state.count);
+  const showCounter = useSelector((state) => state.showCounter);
   const dispatch = useDispatch();
-  const toggleCounterHandler = () => {};
+
+  const toggleCounterHandler = () => {
+    dispatch({ type: "TOGLE_COUNTER" });
+  };
 
   /**
    * The handleIncrement function dispatches an action of type "INCREMENT".
@@ -27,7 +31,7 @@ const Counter = () => {
   return (
     <main className={classes.counter}>
       <h1>Redux Counter</h1>
-      <div className={classes.value}>{count}</div>
+      {showCounter && <div className={classes.value}>{count}</div>}
 
       <div>
         <button onClick={handleIncrement}>Increment</button>
