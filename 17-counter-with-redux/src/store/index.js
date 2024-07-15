@@ -19,6 +19,22 @@ const counterSlice = createSlice({
   },
 });
 
+const authInitialState = {
+  isAuthenticated: false,
+};
+
+const authSlice = createSlice({
+  name: "auth",
+  initialState: authInitialState,
+  reducers: {
+    login(state) {
+      state.isAuthenticated = true;
+    },
+    logout(state) {
+      state.isAuthenticated = false;
+    },
+  },
+});
 // const counterReducer = (state = initialState, action) => {
 //   if (action.type === "INCREMENT") {
 //     return { ...state, count: state.count + 1 };
@@ -37,8 +53,12 @@ const counterSlice = createSlice({
 //   return state;
 // };
 const store = configureStore({
-  reducer: counterSlice.reducer,
+  reducer: {
+    counter: counterSlice.reducer,
+    auth: authSlice.reducer,
+  },
 });
 
 export const counterActions = counterSlice.actions;
+export const authActions = counterSlice.actions;
 export default store;
