@@ -11,39 +11,39 @@ const CartItem = (props) => {
     dispatch(cartActions.removeItem(id));
   };
   const addCartItemHanlder = () => {
-    const newTotalQuantity = cart.totalQuantity + 1;
-    const updatedItems = cart.items.slice();
-    const existingItem = updatedItems.find((item) => item.id === id);
-    if (existingItem) {
-      const updatedItem = { ...existingItem };
-      updatedItem.quantity++;
-      updatedItem.price = updatedItem.price + price;
-      const existingItemIndex = updatedItems.findIndex(
-        (item) => item.id === id
-      );
-      updatedItems[existingItemIndex] = updatedItem;
-    } else {
-      updatedItems.push({
-        id: id,
-        price: price,
-        quantity: 1,
-        totalPrice: price,
-        name: name,
-      });
-    }
-    const newCart = {
-      items: updatedItems,
-      totalQuantity: newTotalQuantity,
-    };
+    // const newTotalQuantity = cart.totalQuantity + 1;
+    // const updatedItems = cart.items.slice();
+    // const existingItem = updatedItems.find((item) => item.id === id);
+    // if (existingItem) {
+    //   const updatedItem = { ...existingItem };
+    //   updatedItem.quantity++;
+    //   updatedItem.price = updatedItem.price + price;
+    //   const existingItemIndex = updatedItems.findIndex(
+    //     (item) => item.id === id
+    //   );
+    //   updatedItems[existingItemIndex] = updatedItem;
+    // } else {
+    //   updatedItems.push({
+    //     id: id,
+    //     price: price,
+    //     quantity: 1,
+    //     totalPrice: price,
+    //     name: name,
+    //   });
+    // }
+    // const newCart = {
+    //   items: updatedItems,
+    //   totalQuantity: newTotalQuantity,
+    // };
+    // dispatch(cartActions.replaceCart(newCart));
 
-    dispatch(cartActions.replaceCart(newCart));
-    // dispatch(
-    //   cartActions.addItem({
-    //     id,
-    //     price,
-    //     title: name,
-    //   })
-    // );
+    dispatch(
+      cartActions.addItem({
+        id,
+        price,
+        title: name,
+      })
+    );
   };
   return (
     <li className={classes.item}>
