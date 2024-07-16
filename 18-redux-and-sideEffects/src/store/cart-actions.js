@@ -16,7 +16,10 @@ export const sendCartData = (cart) => {
     const sendRequest = async () => {
       const response = await fetch(`${baseUrl}/cart.json`, {
         method: "PUT",
-        body: JSON.stringify(cart),
+        body: JSON.stringify({
+          items: cart.items,
+          totalQuantity: cart.totalQuantity,
+        }),
       });
       if (!response.ok) {
         throw new Error("Sending cart data failed.");
@@ -49,14 +52,6 @@ export const sendCartData = (cart) => {
 
 export const getCartData = () => {
   return async (dispatch) => {
-    console.log("calling get cart data");
-    dispatch(
-      uiActions.setNotification({
-        status: "pending",
-        title: "Getting Cart Data",
-        message: "Please wait...",
-      })
-    );
     const response = await fetch(`${baseUrl}/cart.json`);
     if (!response.ok) {
       dispatch(
@@ -71,8 +66,8 @@ export const getCartData = () => {
     const responseData = await response.json();
     dispatch(
       cartActions.replaceCart({
-        totalQuantity: responseData.totalQuantity,
-        items: responseData.items,
+        totalQuantity: responseData?.totalQuantity || 0,
+        items: responseData?.items || [],
       })
     );
   };
