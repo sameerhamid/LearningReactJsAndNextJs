@@ -43,51 +43,5 @@ const cartSlice = createSlice({
   },
 });
 
-// custom action creators
-// thunk
-
-export const sendCartData = (cart) => {
-  return async (dispatch) => {
-    dispatch(
-      uiActions.setNotification({
-        status: "pending",
-        title: "Sending Cart Data",
-        message: "Please wait...",
-      })
-    );
-    const sendRequest = async () => {
-      const response = await fetch(
-        "https://react-shopping-cart-6be95-default-rtdb.firebaseio.com/cart.json",
-        { method: "PUT", body: JSON.stringify(cart) }
-      );
-      if (!response.ok) {
-        throw new Error("Sending cart data failed.");
-      }
-      const responseData = await response.json();
-    };
-
-    try {
-      await sendRequest();
-      dispatch(
-        uiActions.setNotification({
-          status: "success",
-          title: "Cart Data Sent",
-          message: "Your cart data has been sent successfully.",
-        })
-      );
-    } catch (error) {
-      sendCartData().catch((err) => {
-        dispatch(
-          uiActions.setNotification({
-            status: "error",
-            title: "Failed to Send Cart Data",
-            message: "Failed to send cart data. Please try again later.",
-          })
-        );
-      });
-    }
-  };
-};
-
 export const cartActions = cartSlice.actions;
 export default cartSlice;
