@@ -16,7 +16,11 @@ function Products() {
             <ul>
                 <li>
                     {PRODUCTS.map(product => {
-                        return <Link to={`/products/${product.id}`}>Product 1</Link>
+                        // absolute path
+                        // return <Link to={`/products/${product.id}`}>Product 1</Link>
+                        // relative path
+                        return <Link to={`${product.id}`}>{product.name}</Link>
+
                     })}
                 </li>
             </ul>

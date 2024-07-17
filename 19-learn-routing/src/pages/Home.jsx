@@ -18,7 +18,10 @@ function Home() {
         <>
             <h1>My Home Page</h1>
             <p>Go to
-                <Link to={'/products'} > the list of products</Link>
+                {/* absolute path */}
+                {/* <Link to={'/products'} > the list of products</Link> */}
+                {/* relative path */}
+                <Link to={'products'} > the list of products</Link>
             </p>
             <p>
                 <button onClick={goToProducts}>Products</button>

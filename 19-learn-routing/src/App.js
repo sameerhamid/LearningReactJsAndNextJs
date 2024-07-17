@@ -28,27 +28,49 @@ import ProductDetails from "./pages/ProductDetails";
 
 // routes with children
 
+// const router = createBrowserRouter([
+//   {
+//     path: "/",
+//     element: <RootLaoyout />,
+//     errorElement: <Error />,
+//     children: [
+//       { path: "/", element: <Home /> },
+//       {
+//         path: "/products",
+//         element: <Products />,
+//       },
+//       {
+//         path: "/products/:productId",
+//         element: <ProductDetails />,
+//       },
+//     ],
+//   },
+//   // {
+//   //   path: "*",
+//   //   element: <Error />,
+//   // },
+// ]);
+
 const router = createBrowserRouter([
   {
+    // absolute route path
     path: "/",
     element: <RootLaoyout />,
     errorElement: <Error />,
+
+    // relative rout paths
     children: [
-      { path: "/", element: <Home /> },
+      { path: "", element: <Home /> },
       {
-        path: "/products",
+        path: "products",
         element: <Products />,
       },
       {
-        path: "/products/:productId",
+        path: "products/:productId",
         element: <ProductDetails />,
       },
     ],
   },
-  // {
-  //   path: "*",
-  //   element: <Error />,
-  // },
 ]);
 
 function App() {
