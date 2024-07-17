@@ -60,7 +60,7 @@ const router = createBrowserRouter([
 
     // relative rout paths
     children: [
-      { path: "", element: <Home /> },
+      { index: true, path: "", element: <Home /> },
       {
         path: "products",
         element: <Products />,
