@@ -60,7 +60,9 @@ const router = createBrowserRouter([
 
     // relative rout paths
     children: [
-      { index: true, path: "", element: <Home /> },
+      // index:allows you to define the default routes that should be loaded if the parent routes pathe is active
+      { index: true, element: <Home /> },
+      // { index: true, path: "", element: <Home /> },
       {
         path: "products",
         element: <Products />,
