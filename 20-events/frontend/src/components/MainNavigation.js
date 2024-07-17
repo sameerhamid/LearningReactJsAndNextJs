@@ -9,15 +9,20 @@ function MainNavigation() {
           <li>
             <NavLink
               to={"/"}
-              className={({ isAcitve }) => (isAcitve ? "active" : undefined)}
+              className={({ isAcitve }) =>
+                isAcitve ? classes.active : undefined
+              }
+              end
             >
               Home
             </NavLink>
           </li>
           <li>
             <NavLink
-              to={"events"}
-              className={({ isAcitve }) => (isAcitve ? "active" : undefined)}
+              to={"/events"}
+              className={({ isAcitve }) =>
+                isAcitve ? classes.active : undefined
+              }
             >
               Events
             </NavLink>

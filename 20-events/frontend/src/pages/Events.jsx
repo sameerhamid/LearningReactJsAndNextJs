@@ -43,11 +43,15 @@ function EventsPage() {
     return (
         <>
             <h1>Events</h1>
-            {
-                EVENTS.map(event => {
-                    return <Link to={`${event.id}`}>{event.title}</Link>
-                })
-            }
+            <ul>
+                {
+                    EVENTS.map(event => {
+                        return <li key={event.id}>
+                            <Link to={event.id}>{event.title}</Link>
+                        </li>
+                    })
+                }
+            </ul>
         </>
     )
 }
