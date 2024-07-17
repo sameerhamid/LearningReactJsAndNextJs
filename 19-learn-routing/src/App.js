@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import Home from "./pages/Home";
 import Products from "./pages/Products";
+import RootLaoyout from "./pages/Root";
 
 //old way
 // const routeDefinitions = createRoutesFromElements(
@@ -18,9 +19,22 @@ import Products from "./pages/Products";
 
 // new way
 // Create the router and provide it to the RouterProvider
+// const router = createBrowserRouter([
+//   { path: "/", element: <Home /> },
+//   { path: "/products", element: <Products /> },
+// ]);
+
+// routes with children
+
 const router = createBrowserRouter([
-  { path: "/", element: <Home /> },
-  { path: "/products", element: <Products /> },
+  {
+    path: "/",
+    element: <RootLaoyout />,
+    children: [
+      { path: "/", element: <Home /> },
+      { path: "/products", element: <Products /> },
+    ],
+  },
 ]);
 
 function App() {
