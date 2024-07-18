@@ -1,5 +1,7 @@
 import {
   Form,
+  json,
+  redirect,
   useActionData,
   useNavigate,
   useNavigation,
@@ -17,7 +19,7 @@ function EventForm({ method, event }) {
   }
 
   return (
-    <Form className={classes.form} method="post">
+    <Form className={classes.form} method={method}>
       {data && data.errors && (
         <ul>
           {Object.values(data.errors).map((err) => (
@@ -78,3 +80,40 @@ function EventForm({ method, event }) {
 }
 
 export default EventForm;
+
+export async function action({ request, params }) {
+  const method = request.method;
+  const data = await request.formData();
+  const eventData = {
+    title: data.get("title"),
+    image: data.get("image"),
+    date: data.get("date"),
+    description: data.get("description"),
+  };
+  let url = "http://localhost:8080/events";
+
+  console.log("params>>", params);
+
+  if (method === "PATCH") {
+    url += `/${params.eventId}`;
+  }
+
+  console.log(url);
+  const response = await fetch(url, {
+    method: method,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(eventData),
+  });
+
+  if (response.status === 422) {
+    return response;
+  }
+
+  if (!response.ok) {
+    throw json({ messate: "Failed to create event." }, { status: 500 });
+  }
+
+  return redirect("/events");
+}

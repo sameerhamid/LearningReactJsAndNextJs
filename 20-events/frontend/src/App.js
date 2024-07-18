@@ -2,7 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import HomePage from "./pages/Home";
 import EventsPage, { loader as eventsLoader } from "./pages/Events";
-import NewEventPage, { action as newEventAction } from "./pages/NewEvent";
+import NewEventPage from "./pages/NewEvent";
 import EventDetailsPage, {
   loader as eventDetailsLoader,
   action as deleteEventAction,
@@ -11,6 +11,7 @@ import EditEventPage from "./pages/EditEvent";
 import Root from "./pages/Root";
 import EventsRootLayout from "./pages/EventsRoot";
 import Error from "./pages/Error";
+import { action as manipluteEventAction } from "./components/EventForm";
 // Challenge / Exercise
 
 // 1. Add five new (dummy) page components (content can be simple <h1> elements)
@@ -69,6 +70,7 @@ const router = createBrowserRouter([
               {
                 path: "edit",
                 element: <EditEventPage />,
+                action: manipluteEventAction,
               },
             ],
           },
@@ -76,7 +78,7 @@ const router = createBrowserRouter([
           {
             path: "new",
             element: <NewEventPage />,
-            action: newEventAction,
+            action: manipluteEventAction,
           },
         ],
       },
