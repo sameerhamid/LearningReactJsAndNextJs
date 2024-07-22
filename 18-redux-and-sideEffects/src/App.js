@@ -4,7 +4,7 @@ import Cart from "./components/Cart/Cart";
 import Layout from "./components/Layout/Layout";
 import Products from "./components/Shop/Products";
 import Notification from "./components/UI/Notification";
-import { sendCartData } from "./store/cart-actions";
+import { getCartData, sendCartData } from "./store/cart-actions";
 
 let firstTime = true;
 function App() {
@@ -17,8 +17,14 @@ function App() {
       firstTime = false;
       return;
     }
-    dispatch(sendCartData(cart));
+    if (cart.changed) {
+      dispatch(sendCartData(cart));
+    }
   }, [cart, dispatch]);
+
+  useEffect(() => {
+    dispatch(getCartData());
+  }, [dispatch]);
 
   return (
     <>

@@ -1,5 +1,6 @@
 // action creator
 
+import { cartActions } from "./cart-slice";
 import { uiActions } from "./ui-slice";
 
 export const sendCartData = (cart) => {
@@ -46,5 +47,30 @@ export const sendCartData = (cart) => {
         })
       );
     }
+  };
+};
+
+export const getCartData = () => {
+  return async (dispatch) => {
+    const response = await fetch(
+      "https://react-shopping-cart-6be95-default-rtdb.firebaseio.com/cart.json"
+    );
+
+    if (!response.ok) {
+      dispatch(
+        uiActions.showNotification({
+          status: "error",
+          title: "Error",
+          message: "Failed to fetch cart data!",
+        })
+      );
+    }
+    const responseData = await response.json();
+    dispatch(
+      cartActions.replaceCart({
+        items: responseData.items,
+        totalQuantity: responseData.totalQuantity,
+      })
+    );
   };
 };
