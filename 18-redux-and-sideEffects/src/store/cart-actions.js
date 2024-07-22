@@ -68,7 +68,7 @@ export const getCartData = () => {
     const responseData = await response.json();
     dispatch(
       cartActions.replaceCart({
-        items: responseData.items,
+        items: responseData.items || [],
         totalQuantity: responseData.totalQuantity,
       })
     );
