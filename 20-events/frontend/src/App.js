@@ -6,6 +6,7 @@ import NewEventPage from "./pages/NewEvent";
 import EditEventPage from "./pages/EditEvent";
 import RootLayout from "./pages/Root";
 import EventRootLaout from "./pages/EventRoot";
+import { loader as eventsLoader } from "./pages/Events";
 
 // Challenge / Exercise
 
@@ -46,6 +47,7 @@ const router = createBrowserRouter([
           {
             // path: "events",
             index: true,
+            loader: eventsLoader,
             element: <EventsPage />,
           },
           {
