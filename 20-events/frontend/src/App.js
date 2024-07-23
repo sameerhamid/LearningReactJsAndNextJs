@@ -1,12 +1,11 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./pages/Home";
-import EventsPage from "./pages/Events";
+import EventsPage, { loader as eventsLoader } from "./pages/Events";
 import EventDetailsPage from "./pages/EventDetails";
 import NewEventPage from "./pages/NewEvent";
 import EditEventPage from "./pages/EditEvent";
 import RootLayout from "./pages/Root";
 import EventRootLaout from "./pages/EventRoot";
-import { loader as eventsLoader } from "./pages/Events";
 
 // Challenge / Exercise
 
