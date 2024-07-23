@@ -1,17 +1,3 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-
-import HomePage from "./pages/Home";
-import EventsPage, { loader as eventsLoader } from "./pages/Events";
-import NewEventPage from "./pages/NewEvent";
-import EventDetailsPage, {
-  loader as eventDetailsLoader,
-  action as deleteEventAction,
-} from "./pages/EventDetails";
-import EditEventPage from "./pages/EditEvent";
-import Root from "./pages/Root";
-import EventsRootLayout from "./pages/EventsRoot";
-import Error from "./pages/Error";
-import { action as manipluteEventAction } from "./components/EventForm";
 // Challenge / Exercise
 
 // 1. Add five new (dummy) page components (content can be simple <h1> elements)
@@ -34,59 +20,8 @@ import { action as manipluteEventAction } from "./components/EventForm";
 // 7. Output the ID of the selected event on the EventDetailPage
 // BONUS: Add another (nested) layout route that adds the <EventNavigation> component above all /events... page components
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Root />,
-    errorElement: <Error />,
-    children: [
-      {
-        index: true,
-        // path: "/",
-        element: <HomePage />,
-      },
-      {
-        path: "events",
-        element: <EventsRootLayout />,
-        children: [
-          {
-            // path: "",
-            index: true,
-            element: <EventsPage />,
-            loader: eventsLoader,
-          },
-          {
-            path: ":eventId",
-            id: "event-details",
-            loader: eventDetailsLoader,
-
-            children: [
-              {
-                index: true,
-                element: <EventDetailsPage />,
-                // loader: eventDetailsLoader,
-                action: deleteEventAction,
-              },
-              {
-                path: "edit",
-                element: <EditEventPage />,
-                action: manipluteEventAction,
-              },
-            ],
-          },
-
-          {
-            path: "new",
-            element: <NewEventPage />,
-            action: manipluteEventAction,
-          },
-        ],
-      },
-    ],
-  },
-]);
 function App() {
-  return <RouterProvider router={router} />;
+  return <div></div>;
 }
 
 export default App;
