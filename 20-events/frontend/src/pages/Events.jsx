@@ -2,10 +2,14 @@ import EventsList from '../components/EventsList';
 import { useLoaderData } from 'react-router-dom';
 
 function EventsPage() {
-    const { events } = useLoaderData()
+    const data = useLoaderData()
+
+    // if (data.isError) {
+    //     return <p>{data.message}</p>
+    // }
     return (
         <>
-            <EventsList events={events || []} />
+            <EventsList events={data.events || []} />
         </>
     );
 }
@@ -15,7 +19,10 @@ export default EventsPage;
 export const loader = async () => {
     const response = await fetch("http://localhost:8080/events");
     if (!response.ok) {
+        // return { isError: true, message: 'Could not fetch events.' }
+        throw { message: "Could not fetch events." }
     } else {
+        // loader function supports the Browsers response object so we can return the respose object dirrectly from laoder 
         return response
         // const resData = await response.json();
         // return resData.events;
