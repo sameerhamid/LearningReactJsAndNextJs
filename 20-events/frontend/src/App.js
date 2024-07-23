@@ -31,28 +31,28 @@ import RootLayout from "./pages/Root";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: RootLayout,
+    element: <RootLayout />,
     children: [
       {
         // path: "/",
         index: true,
-        element: HomePage,
+        element: <HomePage />,
       },
       {
         path: "events",
-        element: EventsPage,
+        element: <EventsPage />,
       },
       {
         path: "events/:eventId",
-        element: EventDetailsPage,
+        element: <EventDetailsPage />,
       },
       {
         path: "events/new",
-        element: NewEventPage,
+        element: <NewEventPage />,
       },
       {
         path: "events/eventId/edit",
-        element: EditEventPage,
+        element: <EditEventPage />,
       },
     ],
   },
