@@ -1,5 +1,7 @@
 import {
   Form,
+  json,
+  redirect,
   useActionData,
   useNavigate,
   useNavigation,
@@ -19,7 +21,7 @@ function EventForm({ method, event }) {
     navigation.state === "submitting" || navigation.state === "loading";
 
   return (
-    <Form className={classes.form} method="post">
+    <Form className={classes.form} method={method}>
       {data && data.errors && (
         <ul>
           {Object.values(data.errors).map((errorMsg) => {
@@ -80,3 +82,40 @@ function EventForm({ method, event }) {
 }
 
 export default EventForm;
+
+export const action = async ({ request, params }) => {
+  const method = request.method;
+  const data = await request.formData();
+
+  const eventData = {
+    title: data.get("title"),
+    date: data.get("date"),
+    image: data.get("image"),
+    description: data.get("description"),
+  };
+
+  let url = "http://localhost:8080/events";
+  if (method === "PATCH") {
+    url += `/${params.eventId}`;
+  }
+
+  const response = await fetch(url, {
+    method: method,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(eventData),
+  });
+
+  // for validation error from backend
+
+  console.log(response.status);
+  if (response.status === 422) {
+    return response;
+  }
+  if (!response.ok) {
+    throw json({ message: "Could not save evetn." }, { status: 500 });
+  }
+
+  return redirect("/events");
+};
