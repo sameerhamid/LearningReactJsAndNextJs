@@ -5,7 +5,6 @@ function EventItem({ event }) {
   const sumbit = useSubmit();
   function startDeleteHandler() {
     const proceed = window.confirm("Are you sure");
-
     if (proceed) {
       sumbit(null, { method: "delete" });
     }
