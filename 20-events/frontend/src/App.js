@@ -12,6 +12,7 @@ import EventRootLaout from "./pages/EventRoot";
 import ErrorPage from "./pages/Error";
 
 import { action as manipulateEventAction } from "./components/EventForm";
+import NewsletterPage, { action as newsletterAction } from "./pages/Newsletter";
 
 // Challenge / Exercise
 
@@ -80,6 +81,11 @@ const router = createBrowserRouter([
             element: <NewEventPage />,
           },
         ],
+      },
+      {
+        path: "newsletter",
+        element: <NewsletterPage />,
+        action: newsletterAction,
       },
     ],
   },
