@@ -82,7 +82,7 @@ function EventForm({ method, event }) {
 }
 
 export default EventForm;
-
+// for both update and new event action
 export const action = async ({ request, params }) => {
   const method = request.method;
   const data = await request.formData();
