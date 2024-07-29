@@ -1,3 +1,5 @@
+import { redirect } from "react-router-dom";
+
 export const getAuthTokent = () => {
   const token = localStorage.getItem("token");
   return token;
@@ -11,3 +13,10 @@ export function tokenLoader() {
   }
   return null;
 }
+
+export const checkAuthLoader = () => {
+  const token = getAuthTokent();
+  if (!token) {
+    return redirect("/auth");
+  }
+};
