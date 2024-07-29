@@ -3,6 +3,11 @@ export const getAuthTokent = () => {
   return token;
 };
 
+// loader function should return some value if no value return null
 export function tokenLoader() {
-  return getAuthTokent();
+  const token = getAuthTokent();
+  if (token) {
+    return getAuthTokent();
+  }
+  return null;
 }
