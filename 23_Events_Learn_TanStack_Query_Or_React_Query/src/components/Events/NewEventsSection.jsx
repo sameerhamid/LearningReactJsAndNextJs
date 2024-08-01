@@ -12,7 +12,11 @@ export default function NewEventsSection() {
 
   const { data, error, isError, isPending } = useQuery({
     queryKey: 'events',
-    queryFn: fetchEvents
+    queryFn: fetchEvents,
+    // by default 0
+    staleTime: 0,
+    // inactive cache data remains in memory. clears the cache of the data after 5 seconds
+    gcTime: 50000,
   })
   // const [data, setData] = useState();
   // const [error, setError] = useState();
