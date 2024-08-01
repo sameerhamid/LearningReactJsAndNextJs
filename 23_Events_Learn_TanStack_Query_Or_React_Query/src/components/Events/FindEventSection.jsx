@@ -6,10 +6,12 @@ import ErrorBlock from '../UI/ErrorBlock';
 import EventItem from './EventItem';
 export default function FindEventSection() {
   const searchElement = useRef();
-  const [searchTerm, setSerchTerm] = useState('')
-  const { data, error, isError, isPending } = useQuery({
+  const [searchTerm, setSerchTerm] = useState(undefined)
+  // instead of using isPending we use isLoading it will not be true if enable is false
+  const { data, error, isError, isLoading } = useQuery({
     queryKey: ['events', { search: searchTerm }],
-    queryFn: ({ signal }) => fetchEvents({ searchTerm: searchTerm, signal: signal })
+    queryFn: ({ signal }) => fetchEvents({ searchTerm: searchTerm, signal: signal }),
+    enabled: searchTerm !== undefined
   })
 
   function handleSubmit(event) {
@@ -18,7 +20,7 @@ export default function FindEventSection() {
   }
 
   let content = <p>Please enter a search term and to find events.</p>
-  if (isPending) {
+  if (isLoading) {
     content = <LoadingIndicator />
   }
   if (isError) {
