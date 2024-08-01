@@ -20,15 +20,15 @@ export default function EventItem({ event }) {
           <p className="event-item-date">{formattedDate}</p>
           <p className="event-item-location">{event.location}</p>
         </div>
-        <p>
-          {/* <Link to={`/events/${event.id}`} className="button">
+        {/* <p> */}
+        {/* <Link to={`/events/${event.id}`} className="button">
             View Details
           </Link> */}
 
-          <form>
-            <button className="button" onClick={handleViewDetails}>View Details</button>
-          </form>
-        </p>
+        <form>
+          <button className="button" onClick={handleViewDetails}>View Details</button>
+        </form>
+        {/* </p> */}
       </div>
     </article>
   );
