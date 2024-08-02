@@ -5,7 +5,7 @@ import LoadingIndicator from '../UI/LoadingIndicator';
 import ErrorBlock from '../UI/ErrorBlock';
 import EventItem from './EventItem';
 export default function FindEventSection() {
-  const searchElement = useRef();
+  // const searchElement = useRef();
   const [searchTerm, setSerchTerm] = useState(undefined)
   // instead of using isPending we use isLoading it will not be true if enable is false
   const { data, error, isError, isLoading } = useQuery({
@@ -16,7 +16,8 @@ export default function FindEventSection() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    setSerchTerm(searchElement.current.value)
+    // setSerchTerm(searchElement.current.value)
+    setSerchTerm(e.target.value)
   }
 
   let content = <p>Please enter a search term and to find events.</p>
@@ -45,7 +46,8 @@ export default function FindEventSection() {
           <input
             type="search"
             placeholder="Search events"
-            ref={searchElement}
+            // ref={searchElement}
+            onChange={(e) => setSerchTerm(e.target.value)}
           />
           <button>Search</button>
         </form>

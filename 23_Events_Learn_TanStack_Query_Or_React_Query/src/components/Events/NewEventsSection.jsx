@@ -16,7 +16,7 @@ export default function NewEventsSection() {
     // by default 0 controlls after which time react query will send behind the scenes request to get updated data if it found data in cache  
     staleTime: 0,
     // inactive cache data remains in memory. clears the cache of the data after 5 seconds
-    gcTime: 50000,
+    // gcTime: 50000,
   })
   // const [data, setData] = useState();
   // const [error, setError] = useState();
