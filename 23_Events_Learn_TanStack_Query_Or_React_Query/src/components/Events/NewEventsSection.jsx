@@ -11,8 +11,9 @@ import { fetchEvents } from '../../utils/http.js';
 export default function NewEventsSection() {
 
   const { data, error, isError, isPending } = useQuery({
-    queryKey: ['events'],
-    queryFn: fetchEvents,
+    queryKey: ['events', { max: 3 }],
+    queryFn: ({ signal, queryKey }) => fetchEvents({ signal, ...queryKey[1] }),
+    // queryFn: ({ signal, queryKey }) => fetchEvents({ signal, max: 3 }),
     // by default 0 controlls after which time react query will send behind the scenes request to get updated data if it found data in cache  
     staleTime: 0,
     // inactive cache data remains in memory. clears the cache of the data after 5 seconds
