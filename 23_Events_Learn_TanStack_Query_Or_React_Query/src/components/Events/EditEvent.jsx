@@ -14,7 +14,8 @@ export default function EditEvent() {
   const submit = useSubmit()
   const { data, isError, error } = useQuery({
     queryKey: ['event', params.id],
-    queryFn: ({ signal }) => fetchEvent({ id: params.id, signal })
+    queryFn: ({ signal }) => fetchEvent({ id: params.id, signal }),
+    staleTime: 10000,
   })
   // const { mutate, isPending: updateIsPending, isError: updateIsError, error: updateError } = useMutation({
   //   mutationFn: updateEvent,
