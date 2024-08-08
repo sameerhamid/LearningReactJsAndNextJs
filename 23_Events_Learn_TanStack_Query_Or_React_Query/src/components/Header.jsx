@@ -2,6 +2,7 @@ import { useIsFetching } from "@tanstack/react-query";
 
 export default function Header({ children }) {
   const fetching = useIsFetching()
+
   return (
     <>
       <div id="main-header-loading">
