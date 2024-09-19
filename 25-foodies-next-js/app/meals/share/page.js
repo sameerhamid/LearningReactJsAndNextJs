@@ -1,7 +1,7 @@
 import React from "react";
 
-function SharePage() {
-  return <div>meals share</div>;
+function ShareMealsPage() {
+  return <h1>meals share</h1>;
 }
 
-export default SharePage;
+export default ShareMealsPage;

@@ -1,7 +1,13 @@
-import React from "react";
+import Link from "next/link";
 
-function SharePage() {
-  return <div>meals page</div>;
+function MealsPage() {
+  return (
+    <div>
+      <h1>meals page</h1>
+      <Link href="/meals/share">Share</Link>
+      <Link href="/meals/meal-id">Meal</Link>
+    </div>
+  );
 }
 
-export default SharePage;
+export default MealsPage;
