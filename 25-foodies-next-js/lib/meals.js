@@ -8,3 +8,8 @@ export async function getMeals() {
   const meals = db.prepare("SELECT * FROM meals").all();
   return meals;
 }
+
+export function getMeal(slug) {
+  // await new Promise((resolve) => setTimeout(resolve, 1500));
+  return db.prepare(`SELECT * FROM meals WHERE slug = ?`).get(slug);
+}
