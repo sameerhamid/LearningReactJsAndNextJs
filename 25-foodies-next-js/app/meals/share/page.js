@@ -4,7 +4,10 @@ import ImagePicker from "@/components/meals/image-picker";
 import classes from "./page.module.css";
 import { shareMeal } from "@/lib/actions";
 import MealsFormSubmit from "@/components/meals/meals-from-submit";
-
+export const metadata = {
+  title: "All Meals",
+  description: "Browese the delecious meals shared by our community.",
+};
 export default function ShareMealPage() {
   const [state, formAction] = useFormState(shareMeal, { message: null });
   return (
