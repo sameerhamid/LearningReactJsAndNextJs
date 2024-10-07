@@ -1,3 +1,5 @@
+import Accordian from "./components/Accordion/Accordian";
+import AccordionItem from "./components/Accordion/AccordionItem";
 
 /**
  *  learn about compound componets
@@ -6,7 +8,37 @@
  * 
  */
 function App() {
-  return <h1>React Patterns & Practices</h1>;
+  return (
+    <main>
+      <section>
+        <h2>Why work with us?</h2>
+        <Accordian className="accordion">
+          <AccordionItem title="We got 20 years of experience" className="accordion-item"
+            id="experience"
+          >
+            <article>
+              <p>You can&apos;t go wrong with us</p>
+              <p>
+                We are in the bussiness of plannig highly individualized
+                vacation trips for more than 20 years
+              </p>
+            </article>
+          </AccordionItem>
+          <AccordionItem title="We're working with local guids" className="accordion-item"
+            id="local-guids"
+          >
+            <article>
+              <p>You can&apos;t go wrong with us</p>
+              <p>
+                We are in the bussiness of plannig highly individualized
+                vacation trips for more than 20 years
+              </p>
+            </article>
+          </AccordionItem>
+        </Accordian>
+      </section>
+    </main>
+  );
 }
 
 export default App;
