@@ -1,7 +1,9 @@
 import React from 'react'
 import { useAccordionContext } from './Accordian'
+import { useAccordionItemContext } from './AccordionItem'
 
-function AccordionContent({ id, children, className }) {
+function AccordionContent({ children, className }) {
+    const id = useAccordionItemContext()
     const { openItemId,
     } = useAccordionContext()
     const isOpen = openItemId === id

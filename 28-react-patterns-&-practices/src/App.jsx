@@ -14,11 +14,12 @@ function App() {
         <h2>Why work with us?</h2>
         <Accordian className="accordion">
           <Accordian.Item className="accordion-item"
+            id="experience"
           >
-            <Accordian.Title className="accordion-item-title" id="experience">
+            <Accordian.Title className="accordion-item-title" >
               We got 20 years of experience
             </Accordian.Title>
-            <Accordian.Content id="experience" className="accordion-item-content">
+            <Accordian.Content className="accordion-item-content">
               <article>
                 <p>You can&apos;t go wrong with us</p>
                 <p>
@@ -29,12 +30,12 @@ function App() {
             </Accordian.Content>
           </Accordian.Item>
           <Accordian.Item className="accordion-item"
-
+            id="local-guids"
           >
-            <Accordian.Title className="accordion-item-title" id="local-guids">
+            <Accordian.Title className="accordion-item-title" >
               We're working with local guids
             </Accordian.Title>
-            <Accordian.Content id="local-guids" className="accordion-item-content">
+            <Accordian.Content className="accordion-item-content">
               <article>
                 <p>You can&apos;t go wrong with us</p>
                 <p>

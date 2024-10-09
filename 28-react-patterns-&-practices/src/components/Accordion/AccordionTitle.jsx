@@ -1,10 +1,10 @@
 import React from 'react'
 import { useAccordionContext } from './Accordian'
+import { useAccordionItemContext } from './AccordionItem'
 
-function AccordionTitle({ id, children, className }) {
-
-    const {
-        toggleItem } = useAccordionContext()
+function AccordionTitle({ children, className }) {
+    const id = useAccordionItemContext()
+    const { toggleItem } = useAccordionContext()
 
 
     function handleClick() {
