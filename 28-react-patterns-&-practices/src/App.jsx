@@ -1,5 +1,5 @@
 import Accordian from "./components/Accordion/Accordian";
-import AccordionItem from "./components/Accordion/AccordionItem";
+
 
 /**
  *  learn about compound componets
@@ -13,7 +13,7 @@ function App() {
       <section>
         <h2>Why work with us?</h2>
         <Accordian className="accordion">
-          <AccordionItem title="We got 20 years of experience" className="accordion-item"
+          <Accordian.Item title="We got 20 years of experience" className="accordion-item"
             id="experience"
           >
             <article>
@@ -23,8 +23,8 @@ function App() {
                 vacation trips for more than 20 years
               </p>
             </article>
-          </AccordionItem>
-          <AccordionItem title="We're working with local guids" className="accordion-item"
+          </Accordian.Item>
+          <Accordian.Item title="We're working with local guids" className="accordion-item"
             id="local-guids"
           >
             <article>
@@ -34,7 +34,7 @@ function App() {
                 vacation trips for more than 20 years
               </p>
             </article>
-          </AccordionItem>
+          </Accordian.Item>
         </Accordian>
       </section>
     </main>
