@@ -88,8 +88,8 @@ function App() {
 
 
       {/* using render props */}
-      <SearchableList item={["first", "second", "third"]} />
-      <SearchableList item={PLACES} />
+      <SearchableList items={["first", "second", "third"]} />
+      <SearchableList items={PLACES} />
     </main>
   );
 }

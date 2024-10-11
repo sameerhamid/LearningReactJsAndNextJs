@@ -1,11 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-function SearchableList({ item }) {
+function SearchableList({ items }) {
+    const [searchTerm, setSearchTerm] = useState('')
+    const searchResults = items.filter(item => JSON.stringify(item).toLowerCase().includes(searchTerm.toLowerCase()))
+    const handleChange = (e) => {
+        setSearchTerm(e.target.value)
+    }
     return (
         <div className='searchable-list'>
-            <input type="search" placeholder='Search' />
+            <input type="search" placeholder='Search' onChange={handleChange} value={searchTerm} />
             <ul>
-                {item.map((item, index) => {
+                {searchResults.map((item, index) => {
                     return <li key={index}>{item.toString()}</li>
                 })}
             </ul>
