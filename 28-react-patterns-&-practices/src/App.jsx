@@ -89,12 +89,12 @@ function App() {
 
 
       {/* using render props */}
-      <SearchableList items={["first", "second", "third"]} >
+      <SearchableList items={["first", "second", "third"]} itemKey={item => item}>
         {
           (item) => item
         }
       </SearchableList>
-      <SearchableList items={PLACES} >
+      <SearchableList items={PLACES} itemKey={item => item.id}>
         {
           (item) => < Place item={item} />
         }
