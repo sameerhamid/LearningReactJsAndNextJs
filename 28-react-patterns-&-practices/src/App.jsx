@@ -5,6 +5,7 @@ import amazonImg from './assets/amazon-river.jpg';
 import caribbeanImg from './assets/caribbean-beach.jpg';
 import desertImg from './assets/desert-dunes.jpg';
 import forestImg from './assets/forest-waterfall.jpg';
+import Place from "../Place";
 const PLACES = [
   {
     id: 'african-savanna',
@@ -88,8 +89,16 @@ function App() {
 
 
       {/* using render props */}
-      <SearchableList items={["first", "second", "third"]} />
-      <SearchableList items={PLACES} />
+      <SearchableList items={["first", "second", "third"]} >
+        {
+          (item) => item
+        }
+      </SearchableList>
+      <SearchableList items={PLACES} >
+        {
+          (item) => < Place item={item} />
+        }
+      </SearchableList>
     </main>
   );
 }
