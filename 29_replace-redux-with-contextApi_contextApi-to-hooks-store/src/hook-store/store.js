@@ -22,7 +22,7 @@ export const useStore = () => {
     const newState = actions[actionIdentifier](globalState, payload);
     globalState = {
       ...globalState,
-      newState,
+      ...newState,
     };
     for (let listener of listners) {
       listener(globalState);
