@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { memo } from "react";
 import { useDispatch } from "react-redux";
 
 import Card from "../UI/Card";
@@ -7,10 +7,11 @@ import { toggleFav } from "../../store/actions/products";
 import { ProductContext } from "../../context/products.context";
 import { useStore } from "../../hook-store/store";
 
-const ProductItem = (props) => {
+const ProductItem = memo((props) => {
+  console.log("rendering>>>>");
   // const dispatch = useDispatch();
   // const { toggleFav } = useContext(ProductContext);
-  const dispatch = useStore()[1];
+  const dispatch = useStore(false)[1];
 
   const toggleFavHandler = () => {
     // dispatch(toggleFav(props.id));
@@ -32,6 +33,6 @@ const ProductItem = (props) => {
       </div>
     </Card>
   );
-};
+});
 
 export default ProductItem;

@@ -9,7 +9,7 @@ let actions = {};
  * @return {Array} The first element of the array is the global state,
  *                 the second element is the dispatch function.
  */
-export const useStore = () => {
+export const useStore = (shouldeListen = true) => {
   const setState = useState(globalState)[1];
 
   /**
@@ -30,12 +30,16 @@ export const useStore = () => {
   };
 
   useEffect(() => {
-    listners.push(setState);
+    if (shouldeListen) {
+      listners.push(setState);
+    }
 
     return () => {
-      listners = listners.filter((l) => l !== setState);
+      if (shouldeListen) {
+        listners = listners.filter((l) => l !== setState);
+      }
     };
-  }, [setState]);
+  }, [setState, shouldeListen]);
 
   return [globalState, dispatch];
 };
