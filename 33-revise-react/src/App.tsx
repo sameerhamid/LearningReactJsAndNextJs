@@ -1,5 +1,11 @@
+import Post from "./components/Post";
+
 function App() {
-  return <div>Learinig react</div>;
+  return (
+    <div>
+      <Post />
+    </div>
+  );
 }
 
 export default App;
