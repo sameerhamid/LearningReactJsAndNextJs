@@ -6,7 +6,11 @@ import { Todo } from "./models/todo";
 function App() {
   const [todos, setTodos] = React.useState<Todo[]>([]);
 
-  const addTodoHandler = (todoText: string) => {};
+  const addTodoHandler = (todoText: string) => {
+    const todo = new Todo(todoText);
+
+    setTodos((prevTodos) => [...prevTodos, todo]);
+  };
 
   return (
     <div>

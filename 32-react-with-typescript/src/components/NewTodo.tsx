@@ -1,6 +1,5 @@
-import { on } from "events";
 import React from "react";
-
+import classes from "./NewTodo.module.css";
 interface NewTodoPropsType {
   onAddTodo: (text: string) => void;
 }
@@ -15,9 +14,10 @@ const NewTodo: React.FC<NewTodoPropsType> = (props) => {
       return;
     }
     onAddTodo(enteredText);
+    todoTextRef.current!.value = "";
   };
   return (
-    <form onSubmit={submitHandler}>
+    <form onSubmit={submitHandler} className={classes.form}>
       <label htmlFor="todo-text">Todo Text</label>
       <input type="text" id="todo-text" name="todo-text" ref={todoTextRef} />
       <button type="submit">Add Todo</button>
