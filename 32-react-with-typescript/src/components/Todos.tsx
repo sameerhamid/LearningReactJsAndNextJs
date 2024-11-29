@@ -1,13 +1,15 @@
 import React from "react";
+import { Todo } from "../models/todo";
+import TodoItem from "./TodoItem";
 
 interface TodosPropsType {
-  items: string[];
+  todos: Todo[];
 }
 const Todos: React.FC<TodosPropsType> = (props) => {
   return (
     <ul>
-      {props.items.map((todo) => {
-        return <li key={todo}>{todo}</li>;
+      {props.todos.map((todo) => {
+        return <TodoItem todoItem={todo} key={todo.id} />;
       })}
     </ul>
   );
