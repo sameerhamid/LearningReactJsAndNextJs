@@ -1,7 +1,8 @@
 import React from "react";
 import classes from "./NewTodo.module.css";
+import { useTodosContext } from "../store/todos.context";
 interface NewTodoPropsType {
-  onAddTodo: (text: string) => void;
+  onAddTodo?: (text: string) => void;
 }
 
 /**
@@ -17,7 +18,8 @@ interface NewTodoPropsType {
  * argument. The text input is cleared after submission.
  */
 const NewTodo: React.FC<NewTodoPropsType> = (props) => {
-  const { onAddTodo } = props;
+  //   const { onAddTodo } = props;
+  const { addTodo } = useTodosContext();
   const todoTextRef = React.useRef<HTMLInputElement>(null);
   /**
    * Handles the form submission event for adding a new Todo item.
@@ -35,7 +37,8 @@ const NewTodo: React.FC<NewTodoPropsType> = (props) => {
     if (enteredText.trim().length === 0) {
       return;
     }
-    onAddTodo(enteredText);
+    // onAddTodo(enteredText);
+    addTodo(enteredText);
     todoTextRef.current!.value = "";
   };
   return (

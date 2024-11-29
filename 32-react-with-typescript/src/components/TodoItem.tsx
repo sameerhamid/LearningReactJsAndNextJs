@@ -1,6 +1,7 @@
 import React from "react";
 import { Todo } from "../models/todo";
 import classes from "./TodoItem.module.css";
+import { useTodosContext } from "../store/todos.context";
 interface TodoItemsPropsType {
   todoItem: Todo;
   onDeleteTodo?: (id: string) => void;
@@ -15,14 +16,17 @@ interface TodoItemsPropsType {
  */
 const TodoItem: React.FC<TodoItemsPropsType> = (props) => {
   const { todoItem, onDeleteTodo } = props;
+  const { removeTodo } = useTodosContext();
   return (
     <li className={classes.item}>
       <div>{todoItem.text}</div>
-      <button
+      {/* <button
         onClick={onDeleteTodo && onDeleteTodo.bind(null, props.todoItem.id)}
       >
         Delete
-      </button>
+      </button> */}
+
+      <button onClick={removeTodo.bind(null, props.todoItem.id)}>Delete</button>
     </li>
   );
 };
