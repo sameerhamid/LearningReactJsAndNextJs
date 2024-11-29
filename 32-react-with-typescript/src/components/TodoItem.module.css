@@ -3,4 +3,17 @@
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
   padding: 1rem;
   background-color: #f7f5ef;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.item button {
+  font: inherit;
+  cursor: pointer;
+  background-color: rgb(148, 34, 34);
+  border: 1px solid #f7f5ef;
+  padding: 0.5rem 1.5rem;
+  color: #f7f5ef;
+  border-radius: 4px;
 }
