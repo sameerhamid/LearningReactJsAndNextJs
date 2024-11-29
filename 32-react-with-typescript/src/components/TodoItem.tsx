@@ -18,7 +18,9 @@ const TodoItem: React.FC<TodoItemsPropsType> = (props) => {
   return (
     <li className={classes.item}>
       <div>{todoItem.text}</div>
-      <button onClick={() => onDeleteTodo && onDeleteTodo(props.todoItem.id)}>
+      <button
+        onClick={onDeleteTodo && onDeleteTodo.bind(null, props.todoItem.id)}
+      >
         Delete
       </button>
     </li>
