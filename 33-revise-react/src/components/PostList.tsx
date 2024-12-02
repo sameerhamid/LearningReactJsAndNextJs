@@ -29,7 +29,7 @@ const PostList: React.FC<PostListPropsType> = (props) => {
     <>
       {isPosting && (
         <Modal onClose={onStopPosting}>
-          <NewPost onSubmit={addPostHandler} onCancel={onStopPosting} />
+          <NewPost onAddPost={addPostHandler} onCancel={onStopPosting} />
         </Modal>
       )}
       <ul className={classes.posts}>

@@ -3,10 +3,10 @@ import classes from "./NewPost.module.css";
 import { PostType } from "./PostList";
 interface NewPostPropsType {
   onCancel: () => void;
-  onSubmit: (post: PostType) => void;
+  onAddPost: (post: PostType) => void;
 }
 const NewPost: React.FC<NewPostPropsType> = (props) => {
-  const { onCancel, onSubmit } = props;
+  const { onCancel, onAddPost } = props;
   const [enteredAuthor, setEnteredAuthor] = useState<string>("");
   const [enteredBody, setEnteredBody] = useState<string>("");
   /**
@@ -34,7 +34,7 @@ const NewPost: React.FC<NewPostPropsType> = (props) => {
       body: enteredBody,
       author: enteredAuthor,
     };
-    // onSubmit(post);
+    onAddPost(post);
     setEnteredAuthor("");
     setEnteredBody("");
     onCancel();
