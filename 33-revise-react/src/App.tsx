@@ -1,10 +1,10 @@
 import Post from "./components/Post";
 
 function App() {
-  const names = ["Max", "Manu"];
   return (
     <div>
-      <Post items={names} />
+      <Post body="My First Post" author="Max" />
+      <Post body="My Second Post" author="Max" />
     </div>
   );
 }

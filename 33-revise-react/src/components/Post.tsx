@@ -1,15 +1,15 @@
 import React from "react";
+import classes from "./Post.module.css";
 interface PostPropsType {
-  items: string[];
+  author: string;
+  body: string;
 }
 const Post: React.FC<PostPropsType> = (props) => {
-  const { items: names } = props;
-  const choosenName = Math.random() > 0.5 ? names[0] : names[1];
-  const {} = props;
+  const { body, author } = props;
   return (
-    <div>
-      <p>Hello</p>
-      <p>{choosenName}</p>
+    <div className={classes.post}>
+      <p className={classes.author}>{author}</p>
+      <p className={classes.text}>{body}</p>
     </div>
   );
 };
