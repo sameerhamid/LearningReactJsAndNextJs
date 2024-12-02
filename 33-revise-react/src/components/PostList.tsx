@@ -32,11 +32,26 @@ const PostList: React.FC<PostListPropsType> = (props) => {
           <NewPost onAddPost={addPostHandler} onCancel={onStopPosting} />
         </Modal>
       )}
-      <ul className={classes.posts}>
-        {posts.map((post) => {
-          return <Post key={post.id} body={post.body} author={post.author} />;
-        })}
-      </ul>
+      {posts.length > 0 && (
+        <ul className={classes.posts}>
+          {posts.map((post) => {
+            return <Post key={post.id} body={post.body} author={post.author} />;
+          })}
+        </ul>
+      )}
+      {posts.length === 0 && (
+        <div
+          style={{
+            textAlign: "center",
+            color: "white",
+            fontSize: "24px",
+            fontWeight: "bold",
+          }}
+        >
+          <p>There are no post yet.</p>
+          <p>Start adding some!</p>
+        </div>
+      )}
     </>
   );
 };
