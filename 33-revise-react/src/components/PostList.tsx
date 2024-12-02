@@ -36,6 +36,7 @@ const PostList: React.FC<PostListPropsType> = (props) => {
       {isPosting && (
         <Modal onClose={onStopPosting}>
           <NewPost
+            onCancel={onStopPosting}
             onBodyChange={changeBodyHandler}
             onAuthorChange={changeAuthorHandler}
           />
