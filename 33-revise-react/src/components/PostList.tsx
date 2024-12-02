@@ -8,42 +8,34 @@ interface PostListPropsType {
   onStopPosting: () => void;
 }
 
+export interface PostType {
+  id?: number;
+  author: string;
+  body: string;
+}
+
 const PostList: React.FC<PostListPropsType> = (props) => {
   const { isPosting, onStopPosting } = props;
-  const [enteredAuthor, setEnteredAuthor] = useState<string>("");
-  const [enteredBody, setEnteredBody] = useState<string>("");
 
-  /**
-   * Handles the change event of the text area for the post body.
-   * Updates the component state with the changed value.
-   * @param event The event object for the change event.
-   */
-  const changeBodyHandler = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setEnteredBody(event.target.value);
-  };
+  const [posts, setPosts] = useState<PostType[]>([]);
 
-  /**
-   * Handles the change event of the text input for the post author.
-   * Updates the component state with the changed value.
-   * @param event The event object for the change event.
-   */
-  const changeAuthorHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setEnteredAuthor(event.target.value);
+  const addPostHandler = (post: PostType) => {
+    const id = posts.length + 1;
+    post.id = id;
+    setPosts((prevPosts) => [...prevPosts, post]);
   };
 
   return (
     <>
       {isPosting && (
         <Modal onClose={onStopPosting}>
-          <NewPost
-            onCancel={onStopPosting}
-            onBodyChange={changeBodyHandler}
-            onAuthorChange={changeAuthorHandler}
-          />
+          <NewPost onSubmit={addPostHandler} onCancel={onStopPosting} />
         </Modal>
       )}
       <ul className={classes.posts}>
-        <Post body={enteredBody} author={enteredAuthor} />
+        {posts.map((post) => {
+          return <Post key={post.id} body={post.body} author={post.author} />;
+        })}
       </ul>
     </>
   );
