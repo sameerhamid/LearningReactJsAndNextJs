@@ -1,9 +1,10 @@
 import Post from "./components/Post";
 
 function App() {
+  const names = ["Max", "Manu"];
   return (
     <div>
-      <Post />
+      <Post items={names} />
     </div>
   );
 }

@@ -1,6 +1,9 @@
 import React from "react";
-const names = ["First name", "Last name"];
-const Post: React.FC = (props) => {
+interface PostPropsType {
+  items: string[];
+}
+const Post: React.FC<PostPropsType> = (props) => {
+  const { items: names } = props;
   const choosenName = Math.random() > 0.5 ? names[0] : names[1];
   const {} = props;
   return (
