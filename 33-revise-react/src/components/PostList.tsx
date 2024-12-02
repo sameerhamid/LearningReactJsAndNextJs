@@ -1,13 +1,17 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import NewPost from "./NewPost";
 import Post from "./Post";
 import classes from "./PostList.module.css";
 import Modal from "./Modal";
+interface PostListPropsType {
+  isPosting: boolean;
+  onStopPosting: () => void;
+}
 
-const PostList = () => {
+const PostList: React.FC<PostListPropsType> = (props) => {
+  const { isPosting, onStopPosting } = props;
   const [enteredAuthor, setEnteredAuthor] = useState<string>("");
   const [enteredBody, setEnteredBody] = useState<string>("");
-  const [modalIsVisible, setModalIsVisible] = useState<boolean>(true);
 
   /**
    * Handles the change event of the text area for the post body.
@@ -27,16 +31,10 @@ const PostList = () => {
     setEnteredAuthor(event.target.value);
   };
 
-  /**
-   * Hides the modal by updating the component state.
-   */
-  const hideModalHandler = () => {
-    setModalIsVisible(false);
-  };
   return (
     <>
-      {modalIsVisible && (
-        <Modal onClose={hideModalHandler}>
+      {isPosting && (
+        <Modal onClose={onStopPosting}>
           <NewPost
             onBodyChange={changeBodyHandler}
             onAuthorChange={changeAuthorHandler}
