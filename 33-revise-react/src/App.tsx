@@ -1,11 +1,10 @@
-import Post from "./components/Post";
+import PostList from "./components/PostList";
 
 function App() {
   return (
-    <div>
-      <Post body="My First Post" author="Max" />
-      <Post body="My Second Post" author="Max" />
-    </div>
+    <main>
+      <PostList />
+    </main>
   );
 }
 
