@@ -18,7 +18,7 @@ const router = createBrowserRouter([
         children: [
           {
             path: Routes.NewPost,
-            element: <NewPost onCancel={() => {}} onAddPost={() => {}} />,
+            element: <NewPost onAddPost={() => {}} />,
           },
         ],
       },
