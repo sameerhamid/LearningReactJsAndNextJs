@@ -16,6 +16,7 @@ export interface PostType {
 
 const PostList: React.FC<PostListPropsType> = (props) => {
   const { isPosting, onStopPosting } = props;
+  const [isFetching, setIsFetching] = useState<boolean>(false);
 
   const [posts, setPosts] = useState<PostType[]>([]);
 
@@ -34,9 +35,11 @@ const PostList: React.FC<PostListPropsType> = (props) => {
 
   useEffect(() => {
     async function fetchPosts() {
+      setIsFetching(true);
       const response = await fetch("http://localhost:8080/posts");
       const data = await response.json();
       setPosts(data.posts);
+      setIsFetching(false);
     }
     fetchPosts();
   }, []);
@@ -48,14 +51,14 @@ const PostList: React.FC<PostListPropsType> = (props) => {
           <NewPost onAddPost={addPostHandler} onCancel={onStopPosting} />
         </Modal>
       )}
-      {posts.length > 0 && (
+      {!isFetching && posts.length > 0 && (
         <ul className={classes.posts}>
           {posts.map((post) => {
             return <Post key={post.id} body={post.body} author={post.author} />;
           })}
         </ul>
       )}
-      {posts.length === 0 && (
+      {!isFetching && posts.length === 0 && (
         <div
           style={{
             textAlign: "center",
@@ -66,6 +69,18 @@ const PostList: React.FC<PostListPropsType> = (props) => {
         >
           <p>There are no post yet.</p>
           <p>Start adding some!</p>
+        </div>
+      )}
+      {isFetching && (
+        <div
+          style={{
+            textAlign: "center",
+            color: "white",
+            fontSize: "24px",
+            fontWeight: "bold",
+          }}
+        >
+          <p>Loading...</p>
         </div>
       )}
     </>
