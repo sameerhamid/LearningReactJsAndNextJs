@@ -1,60 +1,21 @@
-import { useState } from "react";
 import classes from "./NewPost.module.css";
-import { PostType } from "../components/PostList";
+
 import Modal from "../components/Modal";
-import { Link } from "react-router-dom";
-interface NewPostPropsType {
-  onAddPost: (post: PostType) => void;
-}
-const NewPost: React.FC<NewPostPropsType> = (props) => {
-  const { onAddPost } = props;
-  const [enteredAuthor, setEnteredAuthor] = useState<string>("");
-  const [enteredBody, setEnteredBody] = useState<string>("");
-  /**
-   * Handles the change event of the text area for the post body.
-   * Updates the component state with the changed value.
-   * @param event The event object for the change event.
-   */
-  const changeBodyHandler = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setEnteredBody(event.target.value);
-  };
+import { ActionFunctionArgs, Form, Link, redirect } from "react-router-dom";
+import { PostType } from "../components/PostList";
+import Routes from "../utils/routes";
 
-  /**
-   * Handles the change event of the text input for the post author.
-   * Updates the component state with the changed value.
-   * @param event The event object for the change event.
-   */
-  const changeAuthorHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setEnteredAuthor(event.target.value);
-  };
-
-  const submitHandler = (event: React.FormEvent) => {
-    event.preventDefault();
-
-    const post: PostType = {
-      body: enteredBody,
-      author: enteredAuthor,
-    };
-    onAddPost(post);
-    setEnteredAuthor("");
-    setEnteredBody("");
-  };
-
+const NewPost: React.FC = () => {
   return (
     <Modal>
-      <form className={classes.form} onSubmit={submitHandler}>
+      <Form className={classes.form} method="post">
         <p>
           <label htmlFor="body">Text</label>
-          <textarea id="body" required rows={3} onChange={changeBodyHandler} />
+          <textarea id="body" required rows={3} name="body" />
         </p>
         <p>
           <label htmlFor="name">Your name</label>
-          <input
-            type="text"
-            id="name"
-            required
-            onChange={changeAuthorHandler}
-          />
+          <input type="text" id="name" required name="author" />
         </p>
         <p className={classes.actions}>
           <Link type="button" to={".."}>
@@ -62,9 +23,23 @@ const NewPost: React.FC<NewPostPropsType> = (props) => {
           </Link>
           <button type="submit">Submit</button>
         </p>
-      </form>
+      </Form>
     </Modal>
   );
 };
 
 export default NewPost;
+
+export async function action(data: ActionFunctionArgs<PostType>) {
+  const post = await data.request.formData();
+  const postData = Object.fromEntries(post);
+  await fetch("http://localhost:8080/posts", {
+    method: "POST",
+    body: JSON.stringify(postData),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  return redirect(Routes.Home);
+}

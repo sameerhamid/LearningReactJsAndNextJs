@@ -13,19 +13,6 @@ export interface PostType {
 const PostList: React.FC = () => {
   const posts: PostType[] = useLoaderData();
 
-  const addPostHandler = (post: PostType) => {
-    fetch("http://localhost:8080/posts", {
-      method: "POST",
-      body: JSON.stringify(post),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    const id = posts.length + 1;
-    post.id = id;
-    // setPosts((prevPosts) => [...prevPosts, post]);
-  };
-
   return (
     <>
       {posts.length > 0 && (
