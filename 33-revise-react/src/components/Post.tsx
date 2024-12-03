@@ -1,15 +1,18 @@
 import React from "react";
 import classes from "./Post.module.css";
+import { PostType } from "./PostList";
+import { Link } from "react-router-dom";
 interface PostPropsType {
-  author: string;
-  body: string;
+  post: PostType;
 }
 const Post: React.FC<PostPropsType> = (props) => {
-  const { body, author } = props;
+  const { post } = props;
   return (
     <li className={classes.post}>
-      <p className={classes.author}>{author}</p>
-      <p className={classes.text}>{body}</p>
+      <Link to={post.id}>
+        <p className={classes.author}>{post.author}</p>
+        <p className={classes.text}>{post.body}</p>
+      </Link>
     </li>
   );
 };

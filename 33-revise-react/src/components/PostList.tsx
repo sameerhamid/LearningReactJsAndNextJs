@@ -5,7 +5,7 @@ import classes from "./PostList.module.css";
 import { useLoaderData } from "react-router-dom";
 
 export interface PostType {
-  id?: number;
+  id: string;
   author: string;
   body: string;
 }
@@ -18,7 +18,7 @@ const PostList: React.FC = () => {
       {posts.length > 0 && (
         <ul className={classes.posts}>
           {posts.map((post) => {
-            return <Post key={post.id} body={post.body} author={post.author} />;
+            return <Post key={post.id} post={post} />;
           })}
         </ul>
       )}
