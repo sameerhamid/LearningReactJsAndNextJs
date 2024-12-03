@@ -1,7 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
-import Posts from "./routes/Posts.tsx";
+import Posts, { loader as postLoader } from "./routes/Posts.tsx";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Routes from "./utils/routes.ts";
 import NewPost from "./routes/NewPost.tsx";
@@ -15,6 +15,7 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Posts />,
+        loader: postLoader,
         children: [
           {
             path: Routes.NewPost,
