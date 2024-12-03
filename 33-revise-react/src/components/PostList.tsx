@@ -20,6 +20,13 @@ const PostList: React.FC<PostListPropsType> = (props) => {
   const [posts, setPosts] = useState<PostType[]>([]);
 
   const addPostHandler = (post: PostType) => {
+    fetch("http://localhost:8080/posts", {
+      method: "POST",
+      body: JSON.stringify(post),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
     const id = posts.length + 1;
     post.id = id;
     setPosts((prevPosts) => [...prevPosts, post]);
