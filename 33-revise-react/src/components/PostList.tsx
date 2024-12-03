@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import NewPost from "./NewPost";
 import Post from "./Post";
 import classes from "./PostList.module.css";
@@ -31,6 +31,15 @@ const PostList: React.FC<PostListPropsType> = (props) => {
     post.id = id;
     setPosts((prevPosts) => [...prevPosts, post]);
   };
+
+  useEffect(() => {
+    async function fetchPosts() {
+      const response = await fetch("http://localhost:8080/posts");
+      const data = await response.json();
+      setPosts(data.posts);
+    }
+    fetchPosts();
+  }, []);
 
   return (
     <>

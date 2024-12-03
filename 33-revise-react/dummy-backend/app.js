@@ -16,11 +16,11 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use("/", (req, res, next) => {
-  console.log(req.method, req.url);
-  res.status(200).json({ message: "It works!" });
-  next();
-});
+// app.use("/", (req, res, next) => {
+//   console.log(req.method, req.url);
+//   res.status(200).json({ message: "It works!" });
+//   next();
+// });
 
 app.get("/posts", async (req, res) => {
   const storedPosts = await getStoredPosts();
