@@ -1,7 +1,7 @@
 import React from "react";
 import ExpenseItem, { ExpenseItemType } from "./ExpenseItem";
 import classes from "./Expenses.module.css";
-import Card from "./Card";
+import Card from "../Ui/Card";
 
 interface ExpensesPropsType {
   expenses: ExpenseItemType[];

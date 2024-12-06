@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ExpenseItemType } from "./components/ExpenseItem";
+import { ExpenseItemType } from "./components/Expenses/ExpenseItem";
 import Expenses from "./components/Expenses";
 
 function App() {

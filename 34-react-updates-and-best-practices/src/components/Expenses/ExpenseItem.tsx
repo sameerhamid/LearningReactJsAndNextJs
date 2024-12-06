@@ -1,7 +1,7 @@
 import React from "react";
 import classes from "./ExpenseItem.module.css";
 import ExpenseDate from "./ExpenseDate";
-import Card from "./Card";
+import Card from "../Ui/Card";
 export interface ExpenseItemType {
   id: string;
   title: string;
