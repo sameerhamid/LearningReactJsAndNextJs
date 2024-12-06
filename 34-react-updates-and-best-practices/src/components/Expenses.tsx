@@ -10,7 +10,7 @@ const Expenses: React.FC<ExpensesPropsType> = (props) => {
   return (
     <div className={classes["expenses"]}>
       {expenses.map((expense) => {
-        return <ExpenseItem item={expense} key={expense.id} />;
+        return <ExpenseItem expenseItem={expense} key={expense.id} />;
       })}
     </div>
   );

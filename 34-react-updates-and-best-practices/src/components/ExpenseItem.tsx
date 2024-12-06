@@ -8,10 +8,10 @@ export interface ExpenseItemType {
 }
 
 interface ExpenseItemPropsType {
-  item: ExpenseItemType;
+  expenseItem: ExpenseItemType;
 }
 const ExpenseItem: React.FC<ExpenseItemPropsType> = (props) => {
-  const { title, amount, date } = props.item;
+  const { title, amount, date } = props.expenseItem;
   return (
     <div className={classes["expense-item"]}>
       <div>{date.toISOString()}</div>
