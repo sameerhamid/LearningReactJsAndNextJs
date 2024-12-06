@@ -1,5 +1,6 @@
 import { useState } from "react";
-import ExpenseItem, { ExpenseItemType } from "./components/ExpenseItem";
+import { ExpenseItemType } from "./components/ExpenseItem";
+import Expenses from "./components/Expenses";
 
 function App() {
   const [expenses, setExpenses] = useState<ExpenseItemType[]>([
@@ -26,9 +27,7 @@ function App() {
   return (
     <>
       <div>Let's get started</div>
-      {expenses.map((item) => (
-        <ExpenseItem item={item} key={item.id} />
-      ))}
+      <Expenses expenses={expenses} />
     </>
   );
 }
