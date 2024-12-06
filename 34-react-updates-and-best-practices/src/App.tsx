@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { ExpenseItemType } from "./components/ExpenseItem";
 import Expenses from "./components/Expenses";
 
@@ -24,12 +24,19 @@ function App() {
       date: new Date(2021, 5, 12),
     },
   ]);
-  return (
-    <>
-      <div>Let's get started</div>
-      <Expenses expenses={expenses} />
-    </>
+
+  return React.createElement(
+    "div",
+    null,
+    React.createElement("h2", null, "Let's get started"),
+    React.createElement(Expenses, { expenses: expenses })
   );
+  // return (
+  //   <div>
+  //     <div>Let's get started</div>
+  //     <Expenses expenses={expenses} />
+  //   </div>
+  // );
 }
 
 export default App;
