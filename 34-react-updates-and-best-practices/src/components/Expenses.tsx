@@ -1,6 +1,7 @@
 import React from "react";
 import ExpenseItem, { ExpenseItemType } from "./ExpenseItem";
 import classes from "./Expenses.module.css";
+import Card from "./Card";
 
 interface ExpensesPropsType {
   expenses: ExpenseItemType[];
@@ -8,11 +9,11 @@ interface ExpensesPropsType {
 const Expenses: React.FC<ExpensesPropsType> = (props) => {
   const { expenses } = props;
   return (
-    <div className={classes["expenses"]}>
+    <Card className={classes["expenses"]}>
       {expenses.map((expense) => {
         return <ExpenseItem expenseItem={expense} key={expense.id} />;
       })}
-    </div>
+    </Card>
   );
 };
 
