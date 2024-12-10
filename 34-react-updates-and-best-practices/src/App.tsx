@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { ExpenseItemType } from "./components/Expenses/ExpenseItem";
 import Expenses from "./components/Expenses";
+import NewExpense from "./components/NewExpense/NewExpense";
 
 function App() {
   const [expenses, setExpenses] = useState<ExpenseItemType[]>([
@@ -25,18 +26,18 @@ function App() {
     },
   ]);
 
-  return React.createElement(
-    "div",
-    null,
-    React.createElement("h2", null, "Let's get started"),
-    React.createElement(Expenses, { expenses: expenses })
-  );
-  // return (
-  //   <div>
-  //     <div>Let's get started</div>
-  //     <Expenses expenses={expenses} />
-  //   </div>
+  // return React.createElement(
+  //   "div",
+  //   null,
+  //   React.createElement("h2", null, "Let's get started"),
+  //   React.createElement(Expenses, { expenses: expenses })
   // );
+  return (
+    <div>
+      <NewExpense />
+      <Expenses expenses={expenses} />
+    </div>
+  );
 }
 
 export default App;
