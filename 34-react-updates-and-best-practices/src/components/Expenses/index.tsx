@@ -18,6 +18,10 @@ const Expenses: React.FC<ExpensesPropsType> = (props) => {
     setFilteredYear(year);
   };
 
+  const filteredExpenses = expenses.filter((expense) => {
+    return expense.date.getFullYear().toString() === filteredYear;
+  });
+
   return (
     <div>
       <Card className={classes["expenses"]}>
@@ -26,9 +30,13 @@ const Expenses: React.FC<ExpensesPropsType> = (props) => {
           selectedFilter={filteredYear}
         />
         <p>{filteredInfoText} is hidden</p>
-        {expenses.map((expense) => {
-          return <ExpenseItem expenseItem={expense} key={expense.id} />;
-        })}
+        {filteredExpenses.length === 0 ? (
+          <p>No expenses found for the selected year</p>
+        ) : (
+          filteredExpenses.map((expense) => {
+            return <ExpenseItem expenseItem={expense} key={expense.id} />;
+          })
+        )}
       </Card>
     </div>
   );
