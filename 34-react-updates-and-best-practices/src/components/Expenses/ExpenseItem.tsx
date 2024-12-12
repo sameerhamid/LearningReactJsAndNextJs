@@ -16,13 +16,15 @@ const ExpenseItem: React.FC<ExpenseItemPropsType> = (props) => {
   const { title, amount, date } = props.expenseItem;
 
   return (
-    <Card className={classes["expense-item"]}>
-      <ExpenseDate date={date} />
-      <div className={classes["expense-item__description"]}>
-        <h2>{title}</h2>
-        <div className={classes["expense-item__price"]}>${amount}</div>
-      </div>
-    </Card>
+    <li>
+      <Card className={classes["expense-item"]}>
+        <ExpenseDate date={date} />
+        <div className={classes["expense-item__description"]}>
+          <h2>{title}</h2>
+          <div className={classes["expense-item__price"]}>${amount}</div>
+        </div>
+      </Card>
+    </li>
   );
 };
 

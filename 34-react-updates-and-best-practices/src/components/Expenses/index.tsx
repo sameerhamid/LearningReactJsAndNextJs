@@ -3,6 +3,7 @@ import ExpenseItem, { ExpenseItemType } from "./ExpenseItem";
 import classes from "./Expenses.module.css";
 import Card from "../Ui/Card";
 import ExpensesFilter, { YEAR_FILTERS } from "../NewExpense/ExpenseFilter";
+import ExpensesList from "./ExpensesList";
 
 interface ExpensesPropsType {
   expenses: ExpenseItemType[];
@@ -29,14 +30,8 @@ const Expenses: React.FC<ExpensesPropsType> = (props) => {
           onChangeFilter={handleFilterChange}
           selectedFilter={filteredYear}
         />
-        <p>{filteredInfoText} is hidden</p>
-        {filteredExpenses.length === 0 ? (
-          <p>No expenses found for the selected year</p>
-        ) : (
-          filteredExpenses.map((expense) => {
-            return <ExpenseItem expenseItem={expense} key={expense.id} />;
-          })
-        )}
+
+        <ExpensesList expenses={filteredExpenses} />
       </Card>
     </div>
   );
