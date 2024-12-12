@@ -34,7 +34,7 @@ const ExpenseForm: React.FC<ExpenseFormPropsType> = (props) => {
     }
     const expenseData: ExpenseItemType = {
       title: inputData[FormInput.TITLE],
-      amount: inputData[FormInput.AMOUNT],
+      amount: +inputData[FormInput.AMOUNT],
       date: new Date(inputData[FormInput.DATE]),
       id: Date.now().toString(),
     };
