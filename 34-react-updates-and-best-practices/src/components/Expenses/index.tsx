@@ -4,6 +4,7 @@ import classes from "./Expenses.module.css";
 import Card from "../Ui/Card";
 import ExpensesFilter, { YEAR_FILTERS } from "../NewExpense/ExpenseFilter";
 import ExpensesList from "./ExpensesList";
+import ExpensesChart from "./ExpensesChart";
 
 interface ExpensesPropsType {
   expenses: ExpenseItemType[];
@@ -30,7 +31,7 @@ const Expenses: React.FC<ExpensesPropsType> = (props) => {
           onChangeFilter={handleFilterChange}
           selectedFilter={filteredYear}
         />
-
+        <ExpensesChart expenses={filteredExpenses} />
         <ExpensesList expenses={filteredExpenses} />
       </Card>
     </div>

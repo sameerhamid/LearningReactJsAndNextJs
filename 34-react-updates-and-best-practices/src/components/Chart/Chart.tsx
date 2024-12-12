@@ -2,7 +2,7 @@ import React from "react";
 import ChartBar from "./ChartBar";
 import classes from "./Chart.module.css";
 
-export interface DataPointType {
+export interface ChartDataPointType {
   label:
     | "January"
     | "February"
@@ -20,11 +20,12 @@ export interface DataPointType {
 }
 
 interface ChartPropTypes {
-  dataPoints: DataPointType[];
+  dataPoints: ChartDataPointType[];
 }
 
 const Chart: React.FC<ChartPropTypes> = (props) => {
   const { dataPoints } = props;
+  const totalMax = Math.max(...dataPoints.map((dataPoint) => dataPoint.value));
   return (
     <div className={classes["chart"]}>
       {dataPoints.map((dataPoint) => (
@@ -32,7 +33,7 @@ const Chart: React.FC<ChartPropTypes> = (props) => {
           key={dataPoint.label}
           label={dataPoint.label}
           value={dataPoint.value}
-          maxValue={0}
+          maxValue={totalMax}
         />
       ))}
     </div>
