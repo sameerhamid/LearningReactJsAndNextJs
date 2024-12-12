@@ -1,6 +1,12 @@
 import React from "react";
 import classes from "./ExpenseForm.module.css";
 import { FormInput } from "../../utils/enums";
+
+interface ExpenseItemType {
+  [FormInput.TITLE]: string;
+  [FormInput.AMOUNT]: number;
+  [FormInput.DATE]: Date;
+}
 const ExpenseForm = () => {
   const [inputData, setInputData] = React.useState({
     [FormInput.TITLE]: "",
@@ -18,6 +24,20 @@ const ExpenseForm = () => {
   };
   const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    if (
+      inputData[FormInput.TITLE].trim().length === 0 ||
+      inputData[FormInput.AMOUNT] === 0 ||
+      inputData[FormInput.DATE].trim().length === 0
+    ) {
+      return;
+    }
+    const expenseData: ExpenseItemType = {
+      title: inputData[FormInput.TITLE],
+      amount: inputData[FormInput.AMOUNT],
+      date: new Date(inputData[FormInput.DATE]),
+    };
+    console.log(expenseData);
     setInputData({
       [FormInput.TITLE]: "",
       [FormInput.AMOUNT]: 0,
