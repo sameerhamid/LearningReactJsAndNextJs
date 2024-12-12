@@ -1,13 +1,13 @@
 import React from "react";
 import classes from "./ExpenseForm.module.css";
 import { FormInput } from "../../utils/enums";
+import { ExpenseItemType } from "../Expenses/ExpenseItem";
 
-interface ExpenseItemType {
-  [FormInput.TITLE]: string;
-  [FormInput.AMOUNT]: number;
-  [FormInput.DATE]: Date;
+interface ExpenseFormPropsType {
+  onSaveExpenseData: (expenseData: ExpenseItemType) => void;
 }
-const ExpenseForm = () => {
+const ExpenseForm: React.FC<ExpenseFormPropsType> = (props) => {
+  const { onSaveExpenseData } = props;
   const [inputData, setInputData] = React.useState({
     [FormInput.TITLE]: "",
     [FormInput.AMOUNT]: 0,
@@ -36,8 +36,9 @@ const ExpenseForm = () => {
       title: inputData[FormInput.TITLE],
       amount: inputData[FormInput.AMOUNT],
       date: new Date(inputData[FormInput.DATE]),
+      id: Date.now().toString(),
     };
-    console.log(expenseData);
+    onSaveExpenseData(expenseData);
     setInputData({
       [FormInput.TITLE]: "",
       [FormInput.AMOUNT]: 0,

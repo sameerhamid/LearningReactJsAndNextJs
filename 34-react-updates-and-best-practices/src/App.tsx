@@ -26,6 +26,12 @@ function App() {
     },
   ]);
 
+  const addExpenseHandler = (expense: ExpenseItemType) => {
+    setExpenses((prevExpenses) => {
+      return [expense, ...prevExpenses];
+    });
+  };
+
   // return React.createElement(
   //   "div",
   //   null,
@@ -34,7 +40,7 @@ function App() {
   // );
   return (
     <div>
-      <NewExpense />
+      <NewExpense onAddExpense={addExpenseHandler} />
       <Expenses expenses={expenses} />
     </div>
   );
