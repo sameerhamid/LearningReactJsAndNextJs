@@ -1,6 +1,6 @@
 import React from "react";
 import classes from "./styles.module.css";
-import { formatCurrency } from "@root/utils/CurrencyFormater";
+import { formatCurrency } from "@root/utils/CurrencyFormator";
 
 export interface ResultsTableType {
   year: number;
