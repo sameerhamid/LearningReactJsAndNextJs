@@ -2,24 +2,29 @@ import React, { useState } from "react";
 import classes from "./styles.module.css";
 import { InputNameEnums } from "@root/constants/enums";
 
-const INITIAL_USER_INPUT = {
+export const INITIAL_USER_INPUT = {
   [InputNameEnums.CURRENT_SAVINGS]: 10000,
   [InputNameEnums.YEARLY_CONTRIBUTION]: 1200,
   [InputNameEnums.EXPECTED_RETURN]: 7,
   [InputNameEnums.DURATION]: 10,
 };
 
-interface UserDataType {
+export interface UserDataType {
   [InputNameEnums.CURRENT_SAVINGS]: number;
   [InputNameEnums.YEARLY_CONTRIBUTION]: number;
   [InputNameEnums.EXPECTED_RETURN]: number;
   [InputNameEnums.DURATION]: number;
 }
 
-const UserInput: React.FC = () => {
+interface UserInputPropsType {
+  onCalculate: (userData: UserDataType) => void;
+}
+const UserInput: React.FC<UserInputPropsType> = (props) => {
+  const { onCalculate } = props;
   const [userData, setUserData] = useState<UserDataType>(INITIAL_USER_INPUT);
   const calculateHandler = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    onCalculate(userData);
   };
 
   const resetHandler = () => {

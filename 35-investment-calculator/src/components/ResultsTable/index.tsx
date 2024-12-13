@@ -1,8 +1,18 @@
 import React from "react";
 import classes from "./styles.module.css";
 
-interface ResultsTablePropType {}
-const ResultsTable: React.FC<ResultsTablePropType> = () => {
+export interface ResultsTableType {
+  year: number;
+  yearlyInterest: number;
+  savingsEndOfYear: number;
+  yearlyContribution: number;
+}
+
+interface ResultsTablePropType {
+  results: ResultsTableType[];
+}
+const ResultsTable: React.FC<ResultsTablePropType> = (props) => {
+  const { results } = props;
   return (
     <table className={classes.result}>
       <thead>
@@ -15,13 +25,17 @@ const ResultsTable: React.FC<ResultsTablePropType> = () => {
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>YEAR NUMBER</td>
-          <td>TOTAL SAVINGS END OF YEAR</td>
-          <td>INTEREST GAINED IN YEAR</td>
-          <td>TOTAL INTEREST GAINED</td>
-          <td>TOTAL INVESTED CAPITAL</td>
-        </tr>
+        {results.map((result) => (
+          <tr key={result.year}>
+            <td>{result.year}</td>
+            <td>{result.savingsEndOfYear.toFixed(2)}</td>
+            <td>{result.yearlyInterest.toFixed(2)}</td>
+            <td>
+              {(result.savingsEndOfYear - result.yearlyInterest).toFixed(2)}
+            </td>
+            <td>{result.yearlyContribution.toFixed(2)}</td>
+          </tr>
+        ))}
       </tbody>
     </table>
   );
