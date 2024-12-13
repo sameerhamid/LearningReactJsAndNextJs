@@ -6,7 +6,7 @@ import React from "react";
 export interface UserDataType {
   [UserFormFields.USER_NAME]: string;
   [UserFormFields.AGE]: string;
-  id?: string;
+  id?: number;
 }
 
 interface UserListPropTypes {
@@ -20,7 +20,7 @@ const UserList: React.FC<UserListPropTypes> = (props) => {
       <ul>
         {users.map((user) => {
           return (
-            <li>
+            <li key={user.id}>
               {user[UserFormFields.USER_NAME]} ({user[UserFormFields.AGE]} years
               old){" "}
             </li>

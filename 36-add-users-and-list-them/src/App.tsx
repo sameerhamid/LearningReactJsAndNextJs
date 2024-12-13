@@ -6,6 +6,8 @@ function App() {
   const [userList, setUserList] = useState<UserDataType[]>([]);
   const addUserHandler = (user: UserDataType) => {
     setUserList((prevUsers) => {
+      const id = userList.length + 1;
+      user.id = id;
       return [...prevUsers, user];
     });
   };
