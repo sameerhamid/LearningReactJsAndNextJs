@@ -3,14 +3,13 @@ import classes from "./styles.module.css";
 import { UserFormFields } from "@root/constants/Enums";
 import Card from "@root/components/Ui/Card";
 import CustomButton from "@root/components/Ui/CustomButton";
+import { UserDataType } from "../UserList";
 
-interface UserFormDataType {
-  [UserFormFields.USER_NAME]: string;
-  [UserFormFields.AGE]: string;
+interface AddUserPropTypes {
+  onAddUser: (user: UserDataType) => void;
 }
-
-const AddUser: React.FC = () => {
-  const [enteredUserData, setEnteredUserData] = useState<UserFormDataType>({
+const AddUser: React.FC<AddUserPropTypes> = ({ onAddUser }) => {
+  const [enteredUserData, setEnteredUserData] = useState<UserDataType>({
     [UserFormFields.USER_NAME]: "",
     [UserFormFields.AGE]: "",
   });
@@ -27,7 +26,7 @@ const AddUser: React.FC = () => {
     if (+enteredUserData[UserFormFields.AGE] < 1) {
       return;
     }
-    console.log(enteredUserData);
+    onAddUser(enteredUserData);
 
     setEnteredUserData({
       [UserFormFields.USER_NAME]: "",
