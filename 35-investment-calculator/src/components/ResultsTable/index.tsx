@@ -1,5 +1,6 @@
 import React from "react";
 import classes from "./styles.module.css";
+import { formatCurrency } from "@root/utils/CurrencyFormater";
 
 export interface ResultsTableType {
   year: number;
@@ -10,9 +11,10 @@ export interface ResultsTableType {
 
 interface ResultsTablePropType {
   results: ResultsTableType[];
+  initialInvestment: number;
 }
 const ResultsTable: React.FC<ResultsTablePropType> = (props) => {
-  const { results } = props;
+  const { results, initialInvestment } = props;
   return (
     <table className={classes.result}>
       <thead>
@@ -28,12 +30,21 @@ const ResultsTable: React.FC<ResultsTablePropType> = (props) => {
         {results.map((result) => (
           <tr key={result.year}>
             <td>{result.year}</td>
-            <td>{result.savingsEndOfYear.toFixed(2)}</td>
+
+            <td>{formatCurrency(result.savingsEndOfYear)}</td>
             <td>{result.yearlyInterest.toFixed(2)}</td>
             <td>
-              {(result.savingsEndOfYear - result.yearlyInterest).toFixed(2)}
+              {formatCurrency(
+                result.savingsEndOfYear -
+                  initialInvestment -
+                  result.yearlyInterest * result.year
+              )}
             </td>
-            <td>{result.yearlyContribution.toFixed(2)}</td>
+            <td>
+              {formatCurrency(
+                initialInvestment + result.yearlyContribution * result.year
+              )}
+            </td>
           </tr>
         ))}
       </tbody>

@@ -9,12 +9,6 @@ import { useState } from "react";
 
 function App() {
   const [userInput, setUserInput] = useState<UserDataType>();
-  // const formatter = new Intl.NumberFormat("en-US", {
-  //   style: "currency",
-  //   currency: "USD",
-  //   minimumFractionDigits: 2,
-  //   maximumFractionDigits: 2,
-  // });
 
   const calculateHandler = (userInput: UserDataType) => {
     setUserInput(userInput);
@@ -47,7 +41,12 @@ function App() {
       {!userInput && (
         <h2 style={{ textAlign: "center" }}>No investment calculated yet</h2>
       )}
-      {userInput && <ResultsTable results={yearlyData} />}
+      {userInput && (
+        <ResultsTable
+          results={yearlyData}
+          initialInvestment={userInput[InputNameEnums.CURRENT_SAVINGS]}
+        />
+      )}
     </div>
   );
 }
