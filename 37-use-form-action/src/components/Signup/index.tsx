@@ -1,6 +1,79 @@
+import {
+  hasMinLength,
+  isEmail,
+  isEqualToOtherValue,
+  isNotEmpty,
+} from "../../util/validation";
+
 export default function Signup() {
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault(); // Prevent the default form submission behavior
+    const formData = new FormData(event.currentTarget);
+
+    // Convert FormData to a plain object for easier manipulation
+    const data = Object.fromEntries(formData.entries());
+    console.log(data);
+
+    const {
+      "confirm-password": confirmPassword,
+      email,
+      "first-name": firstName,
+      "last-name": lastName,
+      password,
+      role,
+      terms,
+    } = data;
+
+    // Get multi-value fields like 'acquisition'
+    const acquisition = formData.getAll("acquisition") as string[];
+
+    const errors: string[] = [];
+
+    if (!isEmail(email as string)) {
+      errors.push("Invalid email.");
+    }
+
+    if (
+      !isNotEmpty(password as string) ||
+      !hasMinLength(password as string, 6)
+    ) {
+      errors.push("Password must be at least 6 characters long.");
+    }
+
+    if (!isEqualToOtherValue(password as string, confirmPassword as string)) {
+      errors.push("Passwords do not match.");
+    }
+
+    if (!isNotEmpty(firstName as string) || !isNotEmpty(lastName as string)) {
+      errors.push("First name and last name are required.");
+    }
+
+    if (!isNotEmpty(role as string)) {
+      errors.push("Role is required.");
+    }
+
+    if (!terms) {
+      errors.push("You must accept the terms and conditions.");
+    }
+
+    if (acquisition.length === 0) {
+      errors.push("You must select at least one acquisition channel.");
+    }
+
+    if (errors.length > 0) {
+      console.error("Validation errors:", errors);
+      return {
+        errors: errors,
+      };
+    }
+    event.currentTarget.reset();
+    return {
+      errors: null,
+    };
+  }
+
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <h2>Welcome on board!</h2>
       <p>We just need a little bit of data from you to get you started 🚀</p>
 
