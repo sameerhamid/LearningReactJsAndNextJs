@@ -1,12 +1,10 @@
 import { use } from "react";
 import { useActionState } from "react";
 import { OpinionsContext } from "../store/opinions-context";
+import Submit from "./Submit";
 
 export function NewOpinion() {
-  const { opinions,
-    addOpinion,
-    upvoteOpinion,
-    downvoteOpinion, } = use(OpinionsContext)
+  const { addOpinion } = use(OpinionsContext)
 
   async function shareOpenionAction(prevFormState, formData) {
 
@@ -85,9 +83,7 @@ export function NewOpinion() {
             </ul>
           )
         }
-        <p className="actions">
-          <button type="submit">Submit</button>
-        </p>
+        <Submit />
       </form>
     </div>
   );
