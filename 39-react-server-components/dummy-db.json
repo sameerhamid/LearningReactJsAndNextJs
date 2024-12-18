@@ -1,12 +1,1 @@
-[
-    {
-        "id": "u1",
-        "name": "Max Mustermann",
-        "title": "Instructor"
-    },
-    {
-        "id": "u2",
-        "name": "Jane Doe",
-        "title": "Instructor"
-    }
-]
+[{"id":"u1","name":"Max Mustermann","title":"Instructor"},{"id":"u2","name":"Jane Doe","title":"Instructor"},{"id":"1734500257270","name":"test 1","title":"first test"},{"id":"u4","name":"test 2","title":"second test"}]
